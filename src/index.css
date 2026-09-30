@@ -1,0 +1,55 @@
+/* Escape1 — variables, reset y utilidades compartidas
+   (todo lo que usan Header, MainHome y Footer al mismo tiempo vive acá) */
+:root {
+  --bg: #0d1013;
+  --surface: #151a1f;
+  --surface-2: #1b2228;
+  --line: #303b43;
+  --line-strong: #5a6771;
+  --text: #f2f4f5;
+  --muted: #aab4bb;
+  --accent: #f36a27;
+  --accent-bright: #ff874d;
+  --accent-soft: rgba(243, 106, 39, .16);
+  --heat: linear-gradient(90deg, #dce1e4, #e7c27a 28%, #e16c3b 54%, #955b8d 77%, #4f769d);
+  --display: "Big Shoulders Display", Impact, sans-serif;
+  --body: "IBM Plex Sans", Arial, sans-serif;
+  --mono: "IBM Plex Mono", monospace;
+  --content: 1180px;
+  --shadow: 0 18px 42px rgba(0,0,0,.36);
+  --ease: cubic-bezier(.2,.7,.2,1);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: radial-gradient(circle at 12% -12%, rgba(243,106,39,.12), transparent 30rem), var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  line-height: 1.6;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 4px; }
+::selection { background: var(--accent); color: #fff; }
+
+.skip-link { position: fixed; z-index: 300; top: -5rem; left: 1rem; padding: .7rem 1rem; background: var(--accent); color: #1b120d; font-weight: 700; }
+.skip-link:focus { top: 1rem; }
+
+/* .wrap: contenedor centrado que usan Header, MainHome y Footer por igual */
+.wrap { width: min(var(--content), calc(100% - 3rem)); margin-inline: auto; }
+
+/* .finish-line: la barra de degradé que aparece debajo del hero Y en el footer */
+.finish-line { height: 6px; background: var(--heat); opacity: .78; }
+
+@media (max-width: 760px) {
+  .wrap { width: min(var(--content), calc(100% - 2rem)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
