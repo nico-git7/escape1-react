@@ -1,6 +1,6 @@
 const Hero = () => (
   <section className="hero photo-section" id="inicio">
-    <img className="ps-bg" src="/img/galeria/akra.jpg" alt="Escape deportivo de acero inoxidable" fetchPriority="high" />
+    <img className="ps-bg" src="/img/galeria/fondo.jpeg" alt="Escape deportivo de acero inoxidable" fetchPriority="high" />
     <div className="wrap hero-layout">
       <div>
         <p className="eyebrow">Taller especializado · Tucumán</p>

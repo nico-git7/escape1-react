@@ -8,21 +8,26 @@ const SERVICE_OPTIONS = [
   'Catalizador',
   'Dowpipe a medida',
   'Accesorio del catálogo',
-  'Reprogramación',
+  'Reprogramación (DPF - EGR OFF) ',
   'Quiero asesoramiento',
 ];
 
-// presetService: nombre del servicio elegido desde la sección "Servicios" (o '')
-const BudgetForm = ({ presetService }) => {
+// preset: { service, detail, id } elegido desde "Servicios" o desde la ficha de un
+// producto del catálogo (o null). El id cambia en cada click, así se vuelve a aplicar.
+const BudgetForm = ({ preset }) => {
   const formRef = useRef(null);
   const [servicio, setServicio] = useState('');
+  const [detalle, setDetalle] = useState('');
   const [status, setStatus] = useState('');
   const currentYear = new Date().getFullYear();
 
-  // Cuando el usuario clickea "Consultar servicio" en otra sección, precarga el select
+  // Cuando el usuario clickea "Consultar servicio" / "Consultar presupuesto" en otra
+  // sección o página, precarga el select (y el detalle, si viene)
   useEffect(() => {
-    if (presetService) setServicio(presetService);
-  }, [presetService]);
+    if (!preset) return;
+    if (preset.service) setServicio(preset.service);
+    if (preset.detail) setDetalle(preset.detail);
+  }, [preset]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -40,6 +45,7 @@ const BudgetForm = ({ presetService }) => {
     ]);
     form.reset();
     setServicio('');
+    setDetalle('');
   };
 
   return (
@@ -89,6 +95,8 @@ const BudgetForm = ({ presetService }) => {
                 <textarea
                   id="p-detalle"
                   name="detalle"
+                  value={detalle}
+                  onChange={(event) => setDetalle(event.target.value)}
                   placeholder="Sonido buscado, modelo de escape, medidas o cualquier dato que nos ayude a orientarte."
                 />
               </div>
@@ -102,7 +110,7 @@ const BudgetForm = ({ presetService }) => {
         <ul className="info-list">
           <li><strong>Sin cargo</strong><span>El presupuesto no tiene costo ni compromiso.</span></li>
           <li><strong>Respuesta</strong><span>Te respondemos por WhatsApp para coordinar y asesorarte.</span></li>
-          <li><strong>Importante</strong><span>Si podés, incluí fotos del vehículo en la conversación.</span></li>
+          <li><strong>Importante</strong><span>Si podés, incluí todos los detallesdel vehículo en la conversación.</span></li>
         </ul>
       </div>
     </section>

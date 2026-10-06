@@ -1,11 +1,4 @@
-const CATALOG_ITEMS = [
-  { image: '/img/galeria/enganche-auto.jpg', alt: 'Enganche para auto', title: 'Enganches', text: 'Colocación y fabricación' },
-  { image: '/img/galeria/bocha-acero.jpg', alt: 'Bocha de acero', title: 'Bochas de acero', text: 'Para enganches' },
-  { image: '/img/galeria/portabici.jpg', alt: 'Portabicicletas', title: 'Portabicicletas', text: 'Para enganche' },
-  { image: '/img/galeria/codo-escape.jpg', alt: 'Codo de escape para moto', title: 'Codos de moto', text: 'Trabajo a medida' },
-  { image: '/img/galeria/precamara.jpg', alt: 'Precámara de escape', title: 'Precámaras', text: 'Repuestos y adaptación' },
-  { image: '/img/galeria/juntas.jpg', alt: 'Juntas para escape', title: 'Juntas y soportes', text: 'Distintas medidas' },
-];
+import catalogItems from '../../data/catalog';
 
 const Catalog = () => (
   <section className="bg-soft" id="catalogo">
@@ -20,12 +13,19 @@ const Catalog = () => (
     </div>
     <div className="wrap">
       <div className="cat-grid">
-        {CATALOG_ITEMS.map((item) => (
-          <article className="cat-item" key={item.title}>
-            <img className="cat-item-photo" src={item.image} alt={item.alt} loading="lazy" />
-            <h3>{item.title}</h3>
-            <span>{item.text}</span>
-          </article>
+        {catalogItems.map((item) => (
+          <a
+            className="cat-link"
+            href={`#/catalogo/${item.slug}`}
+            key={item.slug}
+            aria-label={`Ver fotos de ${item.title}`}
+          >
+            <article className="cat-item">
+              <img className="cat-item-photo" src={item.image} alt={item.alt} loading="lazy" />
+              <h3>{item.title}</h3>
+              <span>Ver fotos →</span>
+            </article>
+          </a>
         ))}
       </div>
     </div>

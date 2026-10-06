@@ -190,3 +190,8 @@ section { position: relative; padding: 6.5rem 0; }
   .field.full { grid-column: auto; }
   .info-list li { grid-template-columns: 1fr; gap: .3rem; }
 }
+/* Catálogo: cada tarjeta es un link a la ficha del producto */
+.cat-link { display: block; color: inherit; }
+.cat-link:hover .cat-item span, .cat-link:focus-visible .cat-item span { color: var(--accent-bright); }
+.cat-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.cat-link .cat-item { height: 100%; }

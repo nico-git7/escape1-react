@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Hero from './sections/Hero';
 import CategoriesAndReasons from './sections/CategoriesAndReasons';
 import ServicesProcess from './sections/ServicesProcess';
@@ -8,13 +7,13 @@ import BudgetForm from './sections/BudgetForm';
 import AppointmentForm from './sections/AppointmentForm';
 import LocationContact from './sections/LocationContact';
 
-const MainHome = () => {
-  const [presetService, setPresetService] = useState('');
-
+// preset / onRequestBudget vienen de App, así también se puede precargar el
+// presupuesto desde la página de detalle de un producto del catálogo.
+const MainHome = ({ preset, onRequestBudget }) => {
   // Cuando se clickea "Consultar servicio", precarga el select del presupuesto
-  // y hace scroll suave hasta esa sección (igual que setupServiceButtons en app.js)
+  // y hace scroll suave hasta esa sección
   const handleSelectService = (service) => {
-    setPresetService(service);
+    onRequestBudget({ service });
     document.getElementById('presupuesto')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     window.setTimeout(() => {
       document.getElementById('p-servicio')?.focus();
@@ -28,7 +27,7 @@ const MainHome = () => {
       <ServicesProcess onSelectService={handleSelectService} />
       <Gallery />
       <Catalog />
-      <BudgetForm presetService={presetService} />
+      <BudgetForm preset={preset} />
       <AppointmentForm />
       <LocationContact />
     </main>
