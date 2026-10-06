@@ -8,12 +8,13 @@
 // (tiene que coincidir con una de SERVICE_OPTIONS de BudgetForm.jsx).
 
 const P = '/img/galeria/';
+const S = '/img/stock/'; // fotos de Unsplash (licencia libre, ver public/img/stock/CREDITOS.txt)
 
 const catalogItems = [
   {
     slug: 'escapes-originales',
     title: 'Escapes originales',
-    image: `${P}deportivo.jpg`,
+    image: `${P}catalogo-escape-original1.jpeg`,
     alt: 'Escape original',
     service: 'Cambio de escape original',
     description:
@@ -45,7 +46,7 @@ const catalogItems = [
   {
     slug: 'downpipe-y-reprogramacion',
     title: 'Downpipe y reprogramación',
-    image: `${P}dowpipe.jpg`,
+    image: `${S}catalogo-downpipe.jpg`,
     alt: 'Downpipe y reprogramación',
     service: 'Dowpipe a medida',
     description:
@@ -61,7 +62,7 @@ const catalogItems = [
   {
     slug: 'trabajos-en-acero-inoxidable',
     title: 'Trabajos en acero inoxidable',
-    image: `${P}codo-escape.jpg`,
+    image: `${S}catalogo-acero.jpg`,
     alt: 'Trabajos en acero inoxidable',
     service: 'Modificación a medida',
     description:
@@ -77,7 +78,7 @@ const catalogItems = [
   {
     slug: 'motos',
     title: 'Motos',
-    image: `${P}precamara.jpg`,
+    image: `${S}catalogo-motos.jpg`,
     alt: 'Escapes para motos',
     service: 'Cambio de escape deportivo',
     description:
@@ -93,7 +94,7 @@ const catalogItems = [
   {
     slug: 'enganches',
     title: 'Enganches',
-    image: `${P}portabici.jpg`,
+    image: `${S}catalogo-enganches.jpg`,
     alt: 'Enganches y portabicicletas',
     service: 'Accesorio del catálogo',
     description:

@@ -1,55 +1,77 @@
 /* Escape1 — variables, reset y utilidades compartidas
    (todo lo que usan Header, MainHome y Footer al mismo tiempo vive acá) */
 :root {
-  --bg: #0d1013;
-  --surface: #151a1f;
-  --surface-2: #1b2228;
-  --line: #303b43;
-  --line-strong: #5a6771;
-  --text: #f2f4f5;
-  --muted: #aab4bb;
+  color-scheme: dark;
+  --bg: #0b0e10;
+  --surface: #13181c;
+  --surface-2: #1a2126;
+  --line: #2a343b;
+  --line-strong: #4b5862;
+  --text: #f3f5f6;
+  --muted: #a3aeb5;
+  --soft: #cdd4d8;
   --accent: #f36a27;
-  --accent-bright: #ff874d;
+  --accent-bright: #ff8a4f;
   --accent-soft: rgba(243, 106, 39, .16);
   --heat: linear-gradient(90deg, #dce1e4, #e7c27a 28%, #e16c3b 54%, #955b8d 77%, #4f769d);
-  --display: "Big Shoulders Display", Impact, sans-serif;
-  --body: "IBM Plex Sans", Arial, sans-serif;
-  --mono: "IBM Plex Mono", monospace;
-  --content: 1180px;
-  --shadow: 0 18px 42px rgba(0,0,0,.36);
+  --display: "Big Shoulders Display", Impact, "Arial Narrow", sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
+  --mono: "IBM Plex Mono", Consolas, monospace;
+  --content: 1200px;
+  --radius: 6px;
+  --header-h: 74px;
+  --shadow: 0 20px 50px rgba(0,0,0,.42);
   --ease: cubic-bezier(.2,.7,.2,1);
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) - 1px); }
 body {
   margin: 0;
   overflow-x: hidden;
-  background: radial-gradient(circle at 12% -12%, rgba(243,106,39,.12), transparent 30rem), var(--bg);
+  background: var(--bg);
   color: var(--text);
   font-family: var(--body);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
-img { display: block; max-width: 100%; }
+/* Grano de película muy sutil sobre todo el sitio: le da textura "metálica"
+   a los fondos planos sin pesar nada (SVG inline). */
+body::before {
+  position: fixed; z-index: 400; inset: 0; content: ""; pointer-events: none; opacity: .045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+img, video { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
 :focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 4px; }
 ::selection { background: var(--accent); color: #fff; }
 
-.skip-link { position: fixed; z-index: 300; top: -5rem; left: 1rem; padding: .7rem 1rem; background: var(--accent); color: #1b120d; font-weight: 700; }
+/* Íconos del sprite (IconSprite.jsx) */
+.icon { width: 1.25em; height: 1.25em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+.skip-link { position: fixed; z-index: 300; top: -5rem; left: 1rem; padding: .7rem 1rem; border-radius: var(--radius); background: var(--accent); color: #1b120d; font-weight: 700; }
 .skip-link:focus { top: 1rem; }
 
 /* .wrap: contenedor centrado que usan Header, MainHome y Footer por igual */
 .wrap { width: min(var(--content), calc(100% - 3rem)); margin-inline: auto; }
 
-/* .finish-line: la barra de degradé que aparece debajo del hero Y en el footer */
-.finish-line { height: 6px; background: var(--heat); opacity: .78; }
+/* .finish-line: la barra de degradé "metal caliente" (debajo del hero y en el footer) */
+.finish-line { height: 4px; background: var(--heat); opacity: .85; }
+
+/* Aparición al hacer scroll (ver useReveal en App.jsx). Solo se oculta si el
+   JS está activo (.js-reveal), así sin JS todo sigue visible. */
+.js-reveal [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); transition-delay: calc(var(--d, 0) * 90ms); }
+.js-reveal [data-reveal].is-visible { opacity: 1; transform: none; }
 
 @media (max-width: 760px) {
+  :root { --header-h: 66px; }
   .wrap { width: min(var(--content), calc(100% - 2rem)); }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .js-reveal [data-reveal] { opacity: 1; transform: none; }
 }

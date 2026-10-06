@@ -10,9 +10,11 @@ import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
 import CatalogDetail from './pages/CatalogDetail';
 import useHashRoute from './utils/useHashRoute';
+import useReveal from './utils/useReveal';
 
 function App() {
   const route = useHashRoute();
+  useReveal(`${route.page}:${route.slug}`);
   // Servicio / detalle a precargar en el formulario de presupuesto
   const [preset, setPreset] = useState(null);
 

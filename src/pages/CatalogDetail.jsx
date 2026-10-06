@@ -26,7 +26,7 @@ const CatalogDetail = ({ slug, onRequestBudget }) => {
     return (
       <main id="contenido" className="detail-page">
         <div className="wrap">
-          <a className="detail-back" href="#catalogo">← Volver al catálogo</a>
+          <a className="detail-back" href="#catalogo"><svg className="icon" aria-hidden="true"><use href="#icon-chevron-left" /></svg>Volver al catálogo</a>
           <h1 className="section-title">Producto no encontrado</h1>
         </div>
       </main>
@@ -36,18 +36,19 @@ const CatalogDetail = ({ slug, onRequestBudget }) => {
   return (
     <main id="contenido" className="detail-page">
       <div className="wrap">
-        <a className="detail-back" href="#catalogo">← Volver al catálogo</a>
+        <a className="detail-back" href="#catalogo"><svg className="icon" aria-hidden="true"><use href="#icon-chevron-left" /></svg>Volver al catálogo</a>
         <div className="detail-layout">
-          <div>
+          <div data-reveal>
             <div className="viewer">
               <img
+                key={item.photos[current] + current}
                 src={item.photos[current]}
                 alt={`${item.title} — foto ${current + 1} de ${total}`}
               />
               {total > 1 && (
                 <>
-                  <button className="viewer-btn prev" type="button" aria-label="Foto anterior" onClick={() => go(-1)}>‹</button>
-                  <button className="viewer-btn next" type="button" aria-label="Foto siguiente" onClick={() => go(1)}>›</button>
+                  <button className="viewer-btn prev" type="button" aria-label="Foto anterior" onClick={() => go(-1)}><svg className="icon" aria-hidden="true"><use href="#icon-chevron-left" /></svg></button>
+                  <button className="viewer-btn next" type="button" aria-label="Foto siguiente" onClick={() => go(1)}><svg className="icon" aria-hidden="true"><use href="#icon-chevron-right" /></svg></button>
                 </>
               )}
               <span className="viewer-count">{current + 1} / {total}</span>
@@ -68,7 +69,7 @@ const CatalogDetail = ({ slug, onRequestBudget }) => {
             </div>
           </div>
 
-          <aside className="detail-info">
+          <aside className="detail-info" data-reveal="2">
             <p className="eyebrow">Catálogo</p>
             <h1 className="section-title">{item.title}</h1>
             <div className="rule" />
@@ -79,6 +80,7 @@ const CatalogDetail = ({ slug, onRequestBudget }) => {
                 href="#presupuesto"
                 onClick={() => onRequestBudget({ service: item.service, detail: `Consulta por: ${item.title}` })}
               >
+                <svg className="icon" aria-hidden="true"><use href="#icon-whatsapp" /></svg>
                 Consultar presupuesto
               </a>
               <a className="btn btn-outline" href="#catalogo">Ver más productos</a>

@@ -8,7 +8,8 @@ const WhatsAppFloat = () => (
     rel="noopener"
     aria-label="Escribir a Escape1 por WhatsApp"
   >
-    <img src="/img/galeria/icono-wp.jpg" alt="" />
+    <svg className="icon" aria-hidden="true"><use href="#icon-whatsapp" /></svg>
+    <span className="wa-float-label" aria-hidden="true">¿Consultas?</span>
   </a>
 );
 

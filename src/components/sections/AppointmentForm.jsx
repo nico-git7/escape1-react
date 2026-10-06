@@ -37,10 +37,9 @@ const AppointmentForm = () => {
   };
 
   return (
-    <section className="photo-section" id="turnos">
-      <img className="ps-bg" src="/img/galeria/cola.jpg" alt="Salida de escape deportiva" loading="lazy" />
+    <section className="bg-soft section-grid" id="turnos">
       <div className="wrap two-col">
-        <div>
+        <div data-reveal>
           <p className="eyebrow">Coordinación</p>
           <h2 className="section-title">Sacá tu turno</h2>
           <div className="rule" />
@@ -82,15 +81,18 @@ const AppointmentForm = () => {
               </div>
             </div>
             <div className="submit-row">
-              <button className="btn btn-solid" type="submit">Solicitar turno</button>
+              <button className="btn btn-solid" type="submit">
+                <svg className="icon" aria-hidden="true"><use href="#icon-whatsapp" /></svg>
+                Solicitar turno
+              </button>
               <span className={`form-status${status ? ' show' : ''}`} role="status">{status}</span>
             </div>
           </form>
         </div>
-        <ul className="info-list">
-          <li><strong>Horario</strong><span>Lunes a sábado, de 9:00 a 19:00.</span></li>
-          <li><strong>Confirmación</strong><span>La fecha queda sujeta a disponibilidad del taller.</span></li>
-          <li><strong>Consultas</strong><span>También podés escribirnos directamente por WhatsApp.</span></li>
+        <ul className="info-list" data-reveal="2">
+          <li><svg className="icon" aria-hidden="true"><use href="#icon-clock" /></svg><strong>Horario</strong><span>Lunes a sábado, de 9:00 a 19:00.</span></li>
+          <li><svg className="icon" aria-hidden="true"><use href="#icon-check" /></svg><strong>Confirmación</strong><span>La fecha queda sujeta a disponibilidad del taller.</span></li>
+          <li><svg className="icon" aria-hidden="true"><use href="#icon-whatsapp" /></svg><strong>Consultas</strong><span>También podés escribirnos directamente por WhatsApp.</span></li>
         </ul>
       </div>
     </section>

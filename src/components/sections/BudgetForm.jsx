@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { openWhatsApp } from '../../utils/whatsapp';
 
 const SERVICE_OPTIONS = [
@@ -8,7 +8,7 @@ const SERVICE_OPTIONS = [
   'Catalizador',
   'Dowpipe a medida',
   'Accesorio del catálogo',
-  'Reprogramación (DPF - EGR OFF) ',
+  'Reprogramación (DPF - EGR OFF)',
   'Quiero asesoramiento',
 ];
 
@@ -19,15 +19,17 @@ const BudgetForm = ({ preset }) => {
   const [servicio, setServicio] = useState('');
   const [detalle, setDetalle] = useState('');
   const [status, setStatus] = useState('');
+  const [appliedPresetId, setAppliedPresetId] = useState(null);
   const currentYear = new Date().getFullYear();
 
   // Cuando el usuario clickea "Consultar servicio" / "Consultar presupuesto" en otra
-  // sección o página, precarga el select (y el detalle, si viene)
-  useEffect(() => {
-    if (!preset) return;
+  // sección o página, precarga el select (y el detalle, si viene). Se hace durante
+  // el render (no en un useEffect) para evitar un render extra.
+  if (preset && preset.id !== appliedPresetId) {
+    setAppliedPresetId(preset.id);
     if (preset.service) setServicio(preset.service);
     if (preset.detail) setDetalle(preset.detail);
-  }, [preset]);
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -50,9 +52,9 @@ const BudgetForm = ({ preset }) => {
 
   return (
     <section className="photo-section" id="presupuesto">
-      <img className="ps-bg" src="/img/galeria/akra.jpg" alt="Escape deportivo metálico" loading="lazy" />
+      <img className="ps-bg" src="/img/galeria/cola.jpg" alt="" loading="lazy" />
       <div className="wrap two-col">
-        <div>
+        <div data-reveal>
           <p className="eyebrow">Cotización</p>
           <h2 className="section-title">Pedí tu presupuesto</h2>
           <div className="rule" />
@@ -102,15 +104,18 @@ const BudgetForm = ({ preset }) => {
               </div>
             </div>
             <div className="submit-row">
-              <button className="btn btn-solid" type="submit">Enviar por WhatsApp</button>
+              <button className="btn btn-solid" type="submit">
+                <svg className="icon" aria-hidden="true"><use href="#icon-whatsapp" /></svg>
+                Enviar por WhatsApp
+              </button>
               <span className={`form-status${status ? ' show' : ''}`} role="status">{status}</span>
             </div>
           </form>
         </div>
-        <ul className="info-list">
-          <li><strong>Sin cargo</strong><span>El presupuesto no tiene costo ni compromiso.</span></li>
-          <li><strong>Respuesta</strong><span>Te respondemos por WhatsApp para coordinar y asesorarte.</span></li>
-          <li><strong>Importante</strong><span>Si podés, incluí todos los detallesdel vehículo en la conversación.</span></li>
+        <ul className="info-list" data-reveal="2">
+          <li><svg className="icon" aria-hidden="true"><use href="#icon-check" /></svg><strong>Sin cargo</strong><span>El presupuesto no tiene costo ni compromiso.</span></li>
+          <li><svg className="icon" aria-hidden="true"><use href="#icon-whatsapp" /></svg><strong>Respuesta</strong><span>Te respondemos por WhatsApp para coordinar y asesorarte.</span></li>
+          <li><svg className="icon" aria-hidden="true"><use href="#icon-custom" /></svg><strong>Importante</strong><span>Si podés, incluí todos los detalles del vehículo en la conversación.</span></li>
         </ul>
       </div>
     </section>

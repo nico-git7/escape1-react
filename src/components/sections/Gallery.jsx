@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import galleryItems, { galleryCategories } from '../../data/gallery';
 import Lightbox from '../Lightbox';
 
@@ -44,7 +44,7 @@ const VideoPreview = ({ item }) => {
   );
 };
 
-const GalleryTile = ({ item, onOpen }) => {
+const GalleryTile = ({ item, label, onOpen }) => {
   const [imageFailed, setImageFailed] = useState(false);
   const video = isVideo(item);
   const filePreview = Boolean(item.video);
@@ -54,27 +54,31 @@ const GalleryTile = ({ item, onOpen }) => {
     <button
       type="button"
       className={`gallery-item${video ? ' is-video' : ''}`}
-      aria-label={`${video ? 'Ver video' : 'Ver imagen'}: ${item.caption}`}
-      onClick={() => onOpen(item)}
+      aria-label={`${video ? 'Ver video' : 'Ver imagen'}: ${item.caption || label}`}
+      onClick={onOpen}
     >
       {filePreview && <VideoPreview item={item} />}
       {!filePreview && thumb && !imageFailed && (
         <img
           className="gallery-photo"
           src={thumb}
-          alt={item.caption}
+          alt=""
           loading="lazy"
           onError={() => setImageFailed(true)}
         />
       )}
       {!filePreview && (!thumb || imageFailed) && (
         <span className="gallery-fallback">
-          <svg viewBox="0 0 24 24"><use href={`#${item.icon || 'icon-custom'}`} /></svg>
+          <svg className="icon" aria-hidden="true"><use href={`#${item.icon || 'icon-custom'}`} /></svg>
         </span>
       )}
       {/* El botón de play solo en videos de YouTube (los propios ya se ven reproduciéndose) */}
       {video && !filePreview && <span className="play-badge" aria-hidden="true" />}
-      <span className="cap">{item.caption}</span>
+      {video && filePreview && <span className="video-tag" aria-hidden="true">Video</span>}
+      <span className="gallery-zoom" aria-hidden="true">
+        <svg className="icon"><use href="#icon-arrow" /></svg>
+      </span>
+      {item.caption && <span className="cap">{item.caption}</span>}
     </button>
   );
 };
@@ -90,18 +94,23 @@ const GalleryGroup = ({ category, items, onOpen }) => {
   const panelId = `gallery-panel-${category.id}`;
 
   return (
-    <div className="gallery-group">
+    <div className="gallery-group" data-reveal>
       <h3 className="gallery-group-title">
         {category.label}
-        <span className="gallery-group-count">{items.length}</span>
+        <span className="gallery-group-count">{items.length} {items.length === 1 ? 'trabajo' : 'trabajos'}</span>
       </h3>
       {items.length === 0 && (
         <p className="gallery-empty">Pronto vamos a subir fotos y videos de esta sección.</p>
       )}
       {visibleItems.length > 0 && (
         <div id={panelId} className="gallery-grid gallery-grid-mixed">
-          {visibleItems.map((item) => (
-            <GalleryTile item={item} key={item.image || item.video || item.youtube} onOpen={onOpen} />
+          {visibleItems.map((item, index) => (
+            <GalleryTile
+              item={item}
+              label={`${category.label}, trabajo ${index + 1}`}
+              key={item.image || item.video || item.youtube}
+              onOpen={() => onOpen(items, index)}
+            />
           ))}
         </div>
       )}
@@ -114,7 +123,7 @@ const GalleryGroup = ({ category, items, onOpen }) => {
             aria-controls={panelId}
             onClick={() => setExpanded((value) => !value)}
           >
-            {expanded ? 'Mostrar menos' : `Mostrar más (${items.length - VISIBLE_COUNT})`}
+            {expanded ? 'Mostrar menos' : `Ver ${items.length - VISIBLE_COUNT} más`}
           </button>
         </div>
       )}
@@ -123,14 +132,19 @@ const GalleryGroup = ({ category, items, onOpen }) => {
 };
 
 const Gallery = () => {
-  const [activeItem, setActiveItem] = useState(null);
+  // { items, index } del lightbox abierto, o null
+  const [viewer, setViewer] = useState(null);
+
+  const openViewer = useCallback((items, index) => setViewer({ items, index }), []);
+  const closeViewer = useCallback(() => setViewer(null), []);
+  const navigate = useCallback((index) => setViewer((current) => current && { ...current, index }), []);
 
   return (
     <>
       <section id="galeria">
         <div className="section-photo-header photo-section">
-          <img className="ps-bg" src="/img/galeria/ferrari.jpg" alt="Vehículo deportivo" loading="lazy" />
-          <div className="wrap">
+          <img className="ps-bg" src="/img/galeria/sistema-escape1.jpg" alt="" loading="lazy" />
+          <div className="wrap" data-reveal>
             <p className="eyebrow">Trabajos del taller</p>
             <h2 className="section-title">Galería</h2>
             <div className="rule" />
@@ -141,12 +155,12 @@ const Gallery = () => {
           {galleryCategories.map((cat) => {
             const items = galleryItems.filter((item) => item.category === cat.id);
             if (items.length === 0) return null;
-            return <GalleryGroup key={cat.id} category={cat} items={items} onOpen={setActiveItem} />;
+            return <GalleryGroup key={cat.id} category={cat} items={items} onOpen={openViewer} />;
           })}
         </div>
       </section>
 
-      <Lightbox item={activeItem} onClose={() => setActiveItem(null)} />
+      <Lightbox items={viewer?.items} index={viewer?.index ?? 0} onClose={closeViewer} onNavigate={navigate} />
     </>
   );
 };
