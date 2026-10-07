@@ -9,6 +9,7 @@ const SERVICE_OPTIONS = [
   'Downpipe a medida',
   'Accesorio del catálogo',
   'Reprogramación (DPF - EGR OFF)',
+  'Reparación / otro',
   'Quiero asesoramiento',
 ];
 

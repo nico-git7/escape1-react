@@ -8,9 +8,10 @@ const MARQUEE_WORDS = [
   'Autos, camionetas y motos',
 ];
 
+// `position` (opcional): qué parte de la foto queda a la vista cuando el recuadro la recorta
 const CATEGORY_TILES = [
   { href: '#servicios', image: '/img/categorias/originales.webp', alt: 'Silenciador original junto a un Peugeot 206', label: 'Escapes originales' },
-  { href: '#servicios', image: '/img/categorias/deportiva.webp', alt: 'Silenciadores deportivos Escape1', label: 'Línea deportiva' },
+  { href: '#servicios', image: '/img/categorias/deportiva.webp', alt: 'Silenciador deportivo SilenPro de acero colocado en un auto', label: 'Línea deportiva', position: 'right center' },
   { href: '#catalogo', image: '/img/categorias/camionetas.webp', alt: 'Camioneta en el taller', label: 'Autos y camionetas' },
   { href: '#servicios', image: '/img/stock/cat-catalizadores.jpg', alt: 'Catalizador', label: 'Catalizadores' },
   { href: '#catalogo', image: '/img/categorias/accesorios.webp', alt: 'Enganches colgados en la pared del taller', label: 'Accesorios' },
@@ -43,7 +44,13 @@ const CategoriesAndReasons = () => (
     <section className="cat-strip" aria-label="Categorías principales">
       {CATEGORY_TILES.map((tile, index) => (
         <a className="cat-tile" href={tile.href} key={tile.label}>
-          <img className="cat-tile-photo" src={tile.image} alt={tile.alt} loading="lazy" />
+          <img
+            className="cat-tile-photo"
+            src={tile.image}
+            alt={tile.alt}
+            loading="lazy"
+            style={tile.position ? { objectPosition: tile.position } : undefined}
+          />
           <span className="cat-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
           <span className="cat-label">
             {tile.label}

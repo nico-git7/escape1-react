@@ -14,8 +14,6 @@ const PROCESS_STEPS = [
   { when: 'Por último', image: 'paso-3-colocado', title: 'Coordinamos el trabajo', text: 'Definimos turno, materiales y alcance para que tengas claridad en cada etapa.' },
 ];
 
-const pad = (n) => String(n).padStart(2, '0');
-
 // onSelectService(nombreServicio) hace scroll al presupuesto y precarga el select
 const ServicesProcess = ({ onSelectService }) => (
   <>
@@ -30,19 +28,19 @@ const ServicesProcess = ({ onSelectService }) => (
           </div>
           <p className="section-sub">Trabajamos sobre todo el sistema de escape: reemplazo, reparación, adaptación y fabricación personalizada.</p>
         </div>
-        <div className="services-grid">
+        {/* Mosaico: los dos primeros servicios van grandes y el resto en una fila más chica */}
+        <div className="services-mosaic">
           {SERVICES.map((service, index) => (
-            <article className="service-card" key={service.title} data-reveal={(index % 3) + 1}>
-              <div className="service-media">
-                <img src={`/img/stock/${service.image}.jpg`} alt="" loading="lazy" />
-                <span className="service-number" aria-hidden="true">{pad(index + 1)}</span>
+            <article className={`service-tile${index < 2 ? ' is-large' : ''}`} key={service.title} data-reveal={(index % 4) + 1}>
+              <img src={`/img/stock/${service.image}.jpg`} alt="" loading="lazy" />
+              <div className="service-tile-body">
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+                <button className="service-link" type="button" onClick={() => onSelectService(service.service)}>
+                  Consultar servicio
+                  <svg className="icon" aria-hidden="true"><use href="#icon-arrow" /></svg>
+                </button>
               </div>
-              <h3>{service.title}</h3>
-              <p>{service.text}</p>
-              <button className="service-link" type="button" onClick={() => onSelectService(service.service)}>
-                Consultar servicio
-                <svg className="icon" aria-hidden="true"><use href="#icon-arrow" /></svg>
-              </button>
             </article>
           ))}
         </div>
