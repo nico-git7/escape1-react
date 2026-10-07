@@ -83,50 +83,61 @@ const GalleryTile = ({ item, label, onOpen }) => {
   );
 };
 
-// Cantidad de elementos (fotos o videos) visibles por categoría antes de "Mostrar más"
-const VISIBLE_COUNT = 3;
+// Una categoría de la galería: título y flechas a la izquierda, y a la derecha
+// una tira de trabajos que se desliza hacia el costado (con el dedo, el mouse o las flechas).
+const GalleryLane = ({ category, items, onOpen }) => {
+  const trackRef = useRef(null);
+  // Si la tira está al principio / al final, para apagar la flecha que no sirve
+  const [edges, setEdges] = useState({ atStart: true, atEnd: false });
 
-const GalleryGroup = ({ category, items, onOpen }) => {
-  const [expanded, setExpanded] = useState(false);
+  const updateEdges = useCallback(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    setEdges({
+      atStart: track.scrollLeft <= 4,
+      atEnd: track.scrollLeft + track.clientWidth >= track.scrollWidth - 4,
+    });
+  }, []);
 
-  const hasMore = items.length > VISIBLE_COUNT;
-  const visibleItems = expanded ? items : items.slice(0, VISIBLE_COUNT);
-  const panelId = `gallery-panel-${category.id}`;
+  // Recalcula cuando cambia el tamaño de la tira (carga inicial, giro del celular, etc.)
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track || !('ResizeObserver' in window)) return undefined;
+    const observer = new ResizeObserver(updateEdges);
+    observer.observe(track);
+    return () => observer.disconnect();
+  }, [updateEdges]);
+
+  const slide = (direction) => {
+    const track = trackRef.current;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    track.scrollBy({ left: direction * track.clientWidth * 0.8, behavior: reduced ? 'auto' : 'smooth' });
+  };
 
   return (
-    <div className="gallery-group" data-reveal>
-      <h3 className="gallery-group-title">
-        {category.label}
-        <span className="gallery-group-count">{items.length} {items.length === 1 ? 'trabajo' : 'trabajos'}</span>
-      </h3>
-      {items.length === 0 && (
-        <p className="gallery-empty">Pronto vamos a subir fotos y videos de esta sección.</p>
-      )}
-      {visibleItems.length > 0 && (
-        <div id={panelId} className="gallery-grid gallery-grid-mixed">
-          {visibleItems.map((item, index) => (
-            <GalleryTile
-              item={item}
-              label={`${category.label}, trabajo ${index + 1}`}
-              key={item.image || item.video || item.youtube}
-              onOpen={() => onOpen(items, index)}
-            />
-          ))}
-        </div>
-      )}
-      {hasMore && (
-        <div className="gallery-more">
-          <button
-            type="button"
-            className="btn btn-outline gallery-more-btn"
-            aria-expanded={expanded}
-            aria-controls={panelId}
-            onClick={() => setExpanded((value) => !value)}
-          >
-            {expanded ? 'Mostrar menos' : `Ver ${items.length - VISIBLE_COUNT} más`}
+    <div className="gallery-lane" data-reveal>
+      <div className="gallery-lane-head">
+        <h3>{category.label}</h3>
+        <p>{items.length} {items.length === 1 ? 'trabajo' : 'trabajos'}</p>
+        <div className="gallery-lane-arrows">
+          <button type="button" aria-label={`${category.label}: anteriores`} disabled={edges.atStart} onClick={() => slide(-1)}>
+            <svg className="icon" aria-hidden="true"><use href="#icon-chevron-left" /></svg>
+          </button>
+          <button type="button" aria-label={`${category.label}: siguientes`} disabled={edges.atEnd} onClick={() => slide(1)}>
+            <svg className="icon" aria-hidden="true"><use href="#icon-chevron-right" /></svg>
           </button>
         </div>
-      )}
+      </div>
+      <div className="gallery-lane-track" ref={trackRef} onScroll={updateEdges}>
+        {items.map((item, index) => (
+          <GalleryTile
+            item={item}
+            label={`${category.label}, trabajo ${index + 1}`}
+            key={item.image || item.video || item.youtube}
+            onOpen={() => onOpen(items, index)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
@@ -155,7 +166,7 @@ const Gallery = () => {
           {galleryCategories.map((cat) => {
             const items = galleryItems.filter((item) => item.category === cat.id);
             if (items.length === 0) return null;
-            return <GalleryGroup key={cat.id} category={cat} items={items} onOpen={openViewer} />;
+            return <GalleryLane key={cat.id} category={cat} items={items} onOpen={openViewer} />;
           })}
         </div>
       </section>
