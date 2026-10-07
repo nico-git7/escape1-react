@@ -4,6 +4,8 @@ import { whatsAppLink } from '../../utils/whatsapp';
 
 const ASK_URL = whatsAppLink(['Hola, quiero consultar por un producto que no está en el catálogo de la web.']);
 
+const [featured, ...rest] = catalogItems;
+
 const Catalog = () => (
   <section className="bg-soft" id="catalogo">
     <div className="section-photo-header photo-section">
@@ -16,31 +18,45 @@ const Catalog = () => (
       </div>
     </div>
     <div className="wrap">
-      <div className="cat-grid">
-        {catalogItems.map((item, index) => (
-          <a
-            className="cat-link"
-            href={`#/catalogo/${item.slug}`}
-            key={item.slug}
-            aria-label={`Ver fotos de ${item.title}`}
-            onClick={rememberHomeScroll}
-            data-reveal={(index % 3) + 1}
-          >
-            <article className="cat-item">
-              <div className="cat-item-media">
-                <img className="cat-item-photo" src={item.image} alt={item.alt} loading="lazy" />
-                <span className="cat-item-count">{item.photos.length} fotos</span>
+      <div className="cat-showcase">
+        <a
+          className="cat-feature"
+          href={`#/catalogo/${featured.slug}`}
+          aria-label={`Ver fotos de ${featured.title}`}
+          onClick={rememberHomeScroll}
+          data-reveal
+        >
+          <div className="cat-feature-media">
+            <img src={featured.image} alt={featured.alt} loading="lazy" />
+          </div>
+          <div className="cat-feature-text">
+            <span className="cat-count">{featured.photos.length} fotos</span>
+            <h3>{featured.title}</h3>
+            <p>{featured.description}</p>
+            <span className="cat-item-cta">
+              Ver fotos
+              <svg className="icon" aria-hidden="true"><use href="#icon-arrow" /></svg>
+            </span>
+          </div>
+        </a>
+        <div className="cat-row">
+          {rest.map((item, index) => (
+            <a
+              className="cat-thumb"
+              href={`#/catalogo/${item.slug}`}
+              key={item.slug}
+              aria-label={`Ver fotos de ${item.title}`}
+              onClick={rememberHomeScroll}
+              data-reveal={(index % 3) + 1}
+            >
+              <div className="cat-thumb-media">
+                <img src={item.image} alt={item.alt} loading="lazy" />
               </div>
-              <div className="cat-item-body">
-                <h3>{item.title}</h3>
-                <span className="cat-item-cta">
-                  Ver fotos
-                  <svg className="icon" aria-hidden="true"><use href="#icon-arrow" /></svg>
-                </span>
-              </div>
-            </article>
-          </a>
-        ))}
+              <h3>{item.title}</h3>
+              <span className="cat-count">{item.photos.length} fotos</span>
+            </a>
+          ))}
+        </div>
       </div>
       <p className="cat-note" data-reveal>
         ¿Buscás algo que no está en la lista?{' '}
