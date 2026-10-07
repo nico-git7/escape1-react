@@ -9,8 +9,8 @@ const SERVICES = [
 
 // `when` marca el orden de cada paso; `image` es una foto de /public/img/proceso
 const PROCESS_STEPS = [
-  { when: 'Primero', image: 'paso-1-frente', title: 'Contanos qué necesitás', text: 'Mandanos marca, modelo, año y una descripción de lo que querés resolver.' },
-  { when: 'Después', image: 'paso-2-revision', title: 'Revisamos tu vehículo', text: 'Evaluamos el trabajo y te explicamos las opciones antes de avanzar.' },
+  { when: 'Primero', image: 'paso-1-silenciadores', title: 'Contanos qué necesitás', text: 'Mandanos marca, modelo, año y una descripción de lo que querés resolver.' },
+  { when: 'Después', image: 'paso-2-camioneta', title: 'Revisamos tu vehículo', text: 'Evaluamos el trabajo y te explicamos las opciones antes de avanzar.' },
   { when: 'Por último', image: 'paso-3-colocado', title: 'Coordinamos el trabajo', text: 'Definimos turno, materiales y alcance para que tengas claridad en cada etapa.' },
 ];
 
