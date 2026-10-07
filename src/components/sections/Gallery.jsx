@@ -9,18 +9,28 @@ const youtubeThumb = (id) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 // Imagen de portada de un item (foto, poster de video o miniatura de YouTube)
 const getThumb = (item) => item.image || item.poster || (item.youtube ? youtubeThumb(item.youtube) : null);
 
-// Vista previa de un video propio: se reproduce solo, sin sonido y en bucle.
-// Solo corre mientras está visible en pantalla (ahorra datos y batería).
+// Vista previa de un video propio: sin sonido y en bucle.
+// No descarga nada hasta que la tarjeta está por entrar en pantalla; mientras
+// tanto se ve el poster. Usa la versión liviana (`preview`) si existe: el video
+// completo solo se baja al abrirlo en grande.
+const saveData = () => Boolean(navigator.connection && navigator.connection.saveData);
+
 const VideoPreview = ({ item }) => {
   const ref = useRef(null);
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || !('IntersectionObserver' in window)) return undefined;
+    if (!el || !('IntersectionObserver' in window) || saveData()) return undefined;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) el.play().catch(() => {});
-        else el.pause();
+        if (entry.isIntersecting) {
+          setLoad(true);
+          // Con el src recién puesto, el atributo autoPlay se encarga del arranque
+          if (el.getAttribute('src')) el.play().catch(() => {});
+        } else {
+          el.pause();
+        }
       },
       { threshold: 0.25 },
     );
@@ -32,13 +42,13 @@ const VideoPreview = ({ item }) => {
     <video
       ref={ref}
       className="gallery-photo"
-      src={item.video}
+      src={load ? item.preview || item.video : undefined}
       poster={item.poster}
-      autoPlay
+      autoPlay={load}
       muted
       loop
       playsInline
-      preload="metadata"
+      preload="none"
       aria-hidden="true"
     />
   );
