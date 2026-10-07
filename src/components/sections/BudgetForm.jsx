@@ -52,7 +52,7 @@ const BudgetForm = ({ preset }) => {
 
   return (
     <section className="photo-section" id="presupuesto">
-      <img className="ps-bg" src="/img/galeria/cola.jpg" alt="" loading="lazy" />
+      <img className="ps-bg" src="/img/fondos/presupuesto.webp" alt="" loading="lazy" />
       <div className="wrap two-col">
         <div data-reveal>
           <p className="eyebrow">Cotización</p>

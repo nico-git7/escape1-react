@@ -7,7 +7,7 @@ const Footer = () => (
     <div className="wrap footer-grid">
       <div className="footer-brand">
         <a className="logo" href="#inicio" aria-label="Escape1, volver al inicio">
-          <span className="e1">Escape</span><span className="e2">1</span>
+          <img src="/img/logo-soldador.webp" alt="Escape1 Repro-Chip" width="972" height="654" loading="lazy" />
         </a>
         <p>Taller especializado en escapes originales, deportivos y fabricación a medida para autos, camionetas y motos.</p>
       </div>

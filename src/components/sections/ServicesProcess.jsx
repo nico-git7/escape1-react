@@ -7,10 +7,11 @@ const SERVICES = [
   { image: 'servicio-reparaciones', title: 'Reparaciones', text: 'Juntas, soportes, pérdidas, vibraciones y arreglos del sistema de escape.', service: 'Reparación / otro' },
 ];
 
+// `when` marca el orden de cada paso; `image` es una foto de /public/img/proceso
 const PROCESS_STEPS = [
-  { title: 'Contanos qué necesitás', text: 'Mandanos marca, modelo, año y una descripción de lo que querés resolver.' },
-  { title: 'Revisamos tu vehículo', text: 'Evaluamos el trabajo y te explicamos las opciones antes de avanzar.' },
-  { title: 'Coordinamos el trabajo', text: 'Definimos turno, materiales y alcance para que tengas claridad en cada etapa.' },
+  { when: 'Primero', image: 'paso-1-frente', title: 'Contanos qué necesitás', text: 'Mandanos marca, modelo, año y una descripción de lo que querés resolver.' },
+  { when: 'Después', image: 'paso-2-revision', title: 'Revisamos tu vehículo', text: 'Evaluamos el trabajo y te explicamos las opciones antes de avanzar.' },
+  { when: 'Por último', image: 'paso-3-colocado', title: 'Coordinamos el trabajo', text: 'Definimos turno, materiales y alcance para que tengas claridad en cada etapa.' },
 ];
 
 const pad = (n) => String(n).padStart(2, '0');
@@ -18,7 +19,8 @@ const pad = (n) => String(n).padStart(2, '0');
 // onSelectService(nombreServicio) hace scroll al presupuesto y precarga el select
 const ServicesProcess = ({ onSelectService }) => (
   <>
-    <section className="section-grid" id="servicios">
+    <section className="photo-section is-subtle" id="servicios">
+      <img className="ps-bg" src="/img/fondos/inicio.webp" alt="" loading="lazy" />
       <div className="wrap">
         <div className="section-head" data-reveal>
           <div>
@@ -56,12 +58,15 @@ const ServicesProcess = ({ onSelectService }) => (
             <div className="rule" />
           </div>
         </div>
-        <ol className="process-grid">
+        <ol className="process-panels">
           {PROCESS_STEPS.map((step, index) => (
-            <li className="process-item" key={step.title} data-reveal={index + 1}>
-              <span className="process-number" aria-hidden="true">{pad(index + 1)}</span>
-              <h3>{step.title}</h3>
-              <p>{step.text}</p>
+            <li className="process-panel" key={step.title} data-reveal={index + 1}>
+              <img src={`/img/proceso/${step.image}.webp`} alt="" loading="lazy" />
+              <div className="process-body">
+                <p className="process-when">{step.when}</p>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </div>
             </li>
           ))}
         </ol>

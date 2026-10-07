@@ -7,7 +7,7 @@ const ASK_URL = whatsAppLink(['Hola, quiero consultar por un producto que no est
 const Catalog = () => (
   <section className="bg-soft" id="catalogo">
     <div className="section-photo-header photo-section">
-      <img className="ps-bg" src="/img/galeria/escape-silen.jpg" alt="" loading="lazy" />
+      <img className="ps-bg" src="/img/fondos/catalogo.webp" alt="" loading="lazy" />
       <div className="wrap" data-reveal>
         <p className="eyebrow">Catálogo y accesorios</p>
         <h2 className="section-title">Lo que necesitás, en un solo lugar</h2>

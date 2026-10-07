@@ -12,7 +12,7 @@ const CONTACT_CARDS = [
 const LocationContact = () => (
   <>
     <section className="photo-section" id="ubicacion">
-      <img className="ps-bg" src="/img/galeria/calle-taller.png" alt="" loading="lazy" />
+      <img className="ps-bg" src="/img/fondos/ubicacion.webp" alt="" loading="lazy" />
       <div className="wrap">
         <div data-reveal>
           <p className="eyebrow">Dónde encontrarnos</p>
@@ -47,7 +47,8 @@ const LocationContact = () => (
       </div>
     </section>
 
-    <section className="contact-band" id="contacto">
+    <section className="contact-band photo-section is-subtle" id="contacto">
+      <img className="ps-bg" src="/img/fondos/contacto.webp" alt="" loading="lazy" />
       <div className="wrap">
         <div className="contact-head" data-reveal>
           <p className="eyebrow">Hablemos</p>

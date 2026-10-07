@@ -1,10 +1,11 @@
 /* Escape1 — Footer y botón flotante de WhatsApp
    (el botón flotante es un componente aparte, WhatsAppFloat.jsx, pero vive
    visualmente junto al footer así que su estilo se agrupó acá) */
-.site-footer { position: relative; background: #07090b; }
+.site-footer { position: relative; background: #070708; }
 .site-footer .finish-line { opacity: .7; }
 .footer-grid { display: grid; grid-template-columns: minmax(0,1.4fr) repeat(3,minmax(0,1fr)); gap: 2.5rem; padding: 4.5rem 0 3rem; }
 .footer-brand .logo { font-size: 2.4rem; }
+.footer-brand .logo img { height: 8.5rem; margin-left: -.6rem; }
 .footer-brand p { max-width: 320px; margin: 1rem 0 0; color: var(--muted); font-size: .9rem; }
 .footer-col h2 { margin: 0 0 1.1rem; color: var(--text); font-family: var(--mono); font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
 .footer-col ul { display: grid; gap: .65rem; margin: 0; padding: 0; list-style: none; }
@@ -12,7 +13,7 @@
 .footer-col a:hover { color: var(--accent-bright); }
 .footer-col .icon { color: var(--accent); }
 .footer-hours { padding-left: 1.8rem; font-family: var(--mono); font-size: .85rem !important; }
-.footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.4rem 0 1.6rem; border-top: 1px solid var(--line); color: #77838b; font-family: var(--mono); font-size: .68rem; letter-spacing: .04em; }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.4rem 0 1.6rem; border-top: 1px solid var(--line); color: #80858b; font-family: var(--mono); font-size: .68rem; letter-spacing: .04em; }
 .footer-top { display: inline-flex; align-items: center; gap: .4rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; transition: color .2s var(--ease); }
 .footer-top .icon { transform: rotate(-90deg); transition: transform .2s var(--ease); }
 .footer-top:hover { color: var(--accent-bright); }

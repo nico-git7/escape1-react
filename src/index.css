@@ -2,24 +2,25 @@
    (todo lo que usan Header, MainHome y Footer al mismo tiempo vive acá) */
 :root {
   color-scheme: dark;
-  --bg: #0b0e10;
-  --surface: #13181c;
-  --surface-2: #1a2126;
-  --line: #2a343b;
-  --line-strong: #4b5862;
-  --text: #f3f5f6;
-  --muted: #a3aeb5;
-  --soft: #cdd4d8;
-  --accent: #f36a27;
-  --accent-bright: #ff8a4f;
-  --accent-soft: rgba(243, 106, 39, .16);
-  --heat: linear-gradient(90deg, #dce1e4, #e7c27a 28%, #e16c3b 54%, #955b8d 77%, #4f769d);
+  /* Paleta tomada del logo: negro, acero y rojo */
+  --bg: #0a0a0b;
+  --surface: #141516;
+  --surface-2: #1c1d1f;
+  --line: #2a2c2f;
+  --line-strong: #50545a;
+  --text: #f4f5f6;
+  --muted: #9a9fa6;
+  --soft: #c9cdd2;
+  --accent: #d4161d;
+  --accent-bright: #ff4b4b;
+  --accent-soft: rgba(212, 22, 29, .16);
+  --heat: linear-gradient(90deg, #f4f5f6, #a9aeb4 35%, #d4161d 72%, #7d0b10);
   --display: "Big Shoulders Display", Impact, "Arial Narrow", sans-serif;
   --body: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
   --mono: "IBM Plex Mono", Consolas, monospace;
   --content: 1200px;
   --radius: 6px;
-  --header-h: 74px;
+  --header-h: 88px;
   --shadow: 0 20px 50px rgba(0,0,0,.42);
   --ease: cubic-bezier(.2,.7,.2,1);
 }
@@ -52,7 +53,7 @@ button { cursor: pointer; }
 /* Íconos del sprite (IconSprite.jsx) */
 .icon { width: 1.25em; height: 1.25em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
-.skip-link { position: fixed; z-index: 300; top: -5rem; left: 1rem; padding: .7rem 1rem; border-radius: var(--radius); background: var(--accent); color: #1b120d; font-weight: 700; }
+.skip-link { position: fixed; z-index: 300; top: -5rem; left: 1rem; padding: .7rem 1rem; border-radius: var(--radius); background: var(--accent); color: #fff; font-weight: 700; }
 .skip-link:focus { top: 1rem; }
 
 /* .wrap: contenedor centrado que usan Header, MainHome y Footer por igual */
@@ -67,7 +68,7 @@ button { cursor: pointer; }
 .js-reveal [data-reveal].is-visible { opacity: 1; transform: none; }
 
 @media (max-width: 760px) {
-  :root { --header-h: 66px; }
+  :root { --header-h: 72px; }
   .wrap { width: min(var(--content), calc(100% - 2rem)); }
 }
 @media (prefers-reduced-motion: reduce) {

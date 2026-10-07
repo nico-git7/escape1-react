@@ -143,7 +143,7 @@ const Gallery = () => {
     <>
       <section id="galeria">
         <div className="section-photo-header photo-section">
-          <img className="ps-bg" src="/img/galeria/sistema-escape1.jpg" alt="" loading="lazy" />
+          <img className="ps-bg" src="/img/fondos/galeria.webp" alt="" loading="lazy" />
           <div className="wrap" data-reveal>
             <p className="eyebrow">Trabajos del taller</p>
             <h2 className="section-title">Galería</h2>

@@ -17,9 +17,9 @@ const CATEGORY_TILES = [
 ];
 
 const REASONS = [
-  { image: 'razon-medida', title: 'Trabajo a medida', text: 'Medidas, recorrido, salidas y sonido adaptados a lo que necesitás.' },
-  { image: 'razon-acero', title: 'Acero inoxidable', text: 'Fabricación y modificaciones con materiales preparados para el uso real.' },
-  { image: 'razon-asesoramiento', title: 'Asesoramiento directo', text: 'Revisamos tu vehículo y te explicamos las alternativas antes de empezar.' },
+  { title: 'Trabajo a medida', text: 'Medidas, recorrido, salidas y sonido adaptados a lo que necesitás.' },
+  { title: 'Acero inoxidable', text: 'Fabricación y modificaciones con materiales preparados para el uso real.' },
+  { title: 'Asesoramiento directo', text: 'Revisamos tu vehículo y te explicamos las alternativas antes de empezar.' },
 ];
 
 // La lista se repite dos veces para que la animación sea continua (la copia se oculta a lectores de pantalla)
@@ -53,22 +53,32 @@ const CategoriesAndReasons = () => (
       ))}
     </section>
 
-    <section className="photo-section" id="nosotros">
-      <img className="ps-bg" src="/img/galeria/ferrari.jpg" alt="" loading="lazy" />
-      <div className="wrap">
-        <div className="reasons-text" data-reveal>
-          <p className="eyebrow">El trabajo bien hecho se nota</p>
-          <h2 className="section-title">Una solución para cada vehículo</h2>
-          <div className="rule" />
-          {REASONS.map((reason, index) => (
-            <div className="reason-item" key={reason.title} data-reveal={index + 1}>
-              <img className="reason-photo" src={`/img/stock/${reason.image}.jpg`} alt="" loading="lazy" />
-              <div>
+    <section className="photo-section is-subtle" id="nosotros">
+      <img className="ps-bg" src="/img/fondos/nosotros.webp" alt="" loading="lazy" />
+      <div className="wrap about">
+        <figure className="about-photo" data-reveal>
+          <img
+            src="/img/nosotros-taller.webp"
+            alt="Auto dentro del taller, frente a la pared de caños y repuestos de escape"
+            width="1000"
+            height="1250"
+            loading="lazy"
+          />
+        </figure>
+        <div className="about-text">
+          <div data-reveal>
+            <p className="eyebrow">El trabajo bien hecho se nota</p>
+            <h2 className="section-title">Una solución para cada vehículo</h2>
+            <div className="rule" />
+          </div>
+          <ul className="about-list">
+            {REASONS.map((reason, index) => (
+              <li key={reason.title} data-reveal={index + 1}>
                 <h3>{reason.title}</h3>
                 <p>{reason.text}</p>
-              </div>
-            </div>
-          ))}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

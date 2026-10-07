@@ -37,7 +37,8 @@ const AppointmentForm = () => {
   };
 
   return (
-    <section className="bg-soft section-grid" id="turnos">
+    <section className="photo-section" id="turnos">
+      <img className="ps-bg" src="/img/fondos/turnos.webp" alt="" loading="lazy" />
       <div className="wrap two-col">
         <div data-reveal>
           <p className="eyebrow">Coordinación</p>
