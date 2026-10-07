@@ -1,10 +1,20 @@
 import { useEffect, useState } from 'react';
 import catalogItems from '../data/catalog';
+import { openedFromHome } from '../utils/scrollMemory';
+import { whatsAppLink } from '../utils/whatsapp';
 import './CatalogDetail.css';
 
+// Si la ficha se abrió desde el catálogo, "volver" es ir atrás en el historial:
+// la home reaparece en el mismo punto donde estaba. Si se entró directo por el
+// link de la ficha, se usa el href normal (#catalogo).
+const handleBack = (event) => {
+  if (!openedFromHome()) return;
+  event.preventDefault();
+  window.history.back();
+};
+
 // item: producto de data/catalog.js (o undefined si el slug no existe)
-// onRequestBudget: ({ service, detail }) => void — precarga el formulario de presupuesto
-const CatalogDetail = ({ slug, onRequestBudget }) => {
+const CatalogDetail = ({ slug }) => {
   const item = catalogItems.find((entry) => entry.slug === slug);
   const [current, setCurrent] = useState(0);
 
@@ -26,7 +36,7 @@ const CatalogDetail = ({ slug, onRequestBudget }) => {
     return (
       <main id="contenido" className="detail-page">
         <div className="wrap">
-          <a className="detail-back" href="#catalogo"><svg className="icon" aria-hidden="true"><use href="#icon-chevron-left" /></svg>Volver al catálogo</a>
+          <a className="detail-back" href="#catalogo" onClick={handleBack}><svg className="icon" aria-hidden="true"><use href="#icon-chevron-left" /></svg>Volver al catálogo</a>
           <h1 className="section-title">Producto no encontrado</h1>
         </div>
       </main>
@@ -36,7 +46,7 @@ const CatalogDetail = ({ slug, onRequestBudget }) => {
   return (
     <main id="contenido" className="detail-page">
       <div className="wrap">
-        <a className="detail-back" href="#catalogo"><svg className="icon" aria-hidden="true"><use href="#icon-chevron-left" /></svg>Volver al catálogo</a>
+        <a className="detail-back" href="#catalogo" onClick={handleBack}><svg className="icon" aria-hidden="true"><use href="#icon-chevron-left" /></svg>Volver al catálogo</a>
         <div className="detail-layout">
           <div data-reveal>
             <div className="viewer">
@@ -77,13 +87,14 @@ const CatalogDetail = ({ slug, onRequestBudget }) => {
             <div className="detail-actions">
               <a
                 className="btn btn-solid"
-                href="#presupuesto"
-                onClick={() => onRequestBudget({ service: item.service, detail: `Consulta por: ${item.title}` })}
+                href={whatsAppLink([`Hola, quiero consultar por: ${item.title}.`])}
+                target="_blank"
+                rel="noopener"
               >
                 <svg className="icon" aria-hidden="true"><use href="#icon-whatsapp" /></svg>
                 Consultar presupuesto
               </a>
-              <a className="btn btn-outline" href="#catalogo">Ver más productos</a>
+              <a className="btn btn-outline" href="#catalogo" onClick={handleBack}>Ver más productos</a>
             </div>
           </aside>
         </div>

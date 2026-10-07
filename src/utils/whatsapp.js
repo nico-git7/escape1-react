@@ -16,7 +16,12 @@ export function formatDate(value) {
   }).format(new Date(year, month - 1, day));
 }
 
-export function openWhatsApp(lines) {
+// Link a WhatsApp del taller con el mensaje ya escrito (una línea por elemento)
+export function whatsAppLink(lines) {
   const text = encodeURIComponent(lines.filter(Boolean).join('\n'));
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank', 'noopener');
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+}
+
+export function openWhatsApp(lines) {
+  window.open(whatsAppLink(lines), '_blank', 'noopener');
 }

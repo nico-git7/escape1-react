@@ -8,6 +8,7 @@
 // (tiene que coincidir con una de SERVICE_OPTIONS de BudgetForm.jsx).
 
 const P = '/img/galeria/';
+const F = '/img/fotos/'; // fotos nuevas del catálogo, optimizadas para web
 const S = '/img/stock/'; // fotos de Unsplash (licencia libre, ver public/img/stock/CREDITOS.txt)
 
 const catalogItems = [
@@ -30,17 +31,16 @@ const catalogItems = [
   {
     slug: 'escapes-deportivos',
     title: 'Escapes deportivos',
-    image: `${P}escapesilen.jpg`,
+    image: `${F}deportivos-silenciadores-escape1.webp`,
     alt: 'Escape deportivo',
     service: 'Cambio de escape deportivo',
     description:
       'Escapes deportivos para ganar sonido y respuesta. Colocamos y fabricamos sistemas completos, silenciadores y colas, con terminaciones en acero.',
     photos: [
-      `${P}akra.jpg`,
-      `${P}escapes-deportivos.jpg`,
-      `${P}cola.jpg`,
-      `${P}escapesilen.jpg`,
-      `${P}silen-pro1.jpeg`,
+      `${F}deportivos-medio-equipo-silen.webp`,
+      `${F}deportivos-silenciadores-escape1.webp`,
+      `${F}deportivos-escapes-a-la-venta.webp`,
+      `${F}deportivos-silenciadores-en-mesa.webp`,
     ],
   },
   {
@@ -62,17 +62,15 @@ const catalogItems = [
   {
     slug: 'trabajos-en-acero-inoxidable',
     title: 'Trabajos en acero inoxidable',
-    image: `${S}catalogo-acero.jpg`,
+    image: `${F}acero-silenciadores-silenpro.webp`,
     alt: 'Trabajos en acero inoxidable',
     service: 'Modificación a medida',
     description:
-      'Fabricación y soldadura en acero inoxidable: codos, curvas, cañerías y piezas a medida para autos y motos.',
+      'Fabricación y soldadura en acero inoxidable: codos, curvas, cañerías y piezas a medida para autos, camionetas y motos.',
     photos: [
-      `${P}codo-escape.jpg`,
-      `${P}ss1.jpeg`,
-      `${P}cola.jpg`,
-      `${P}escapesilen.jpg`,
-      `${P}sistema-escape1.jpg`,
+      `${F}acero-silenciadores-silenpro.webp`,
+      `${F}acero-equipos-completos.webp`,
+      `${F}acero-escapes-inoxidable.webp`,
     ],
   },
   {
@@ -94,17 +92,17 @@ const catalogItems = [
   {
     slug: 'enganches',
     title: 'Enganches',
-    image: `${S}catalogo-enganches.jpg`,
+    image: `${F}enganches-amarok.webp`,
     alt: 'Enganches y portabicicletas',
     service: 'Accesorio del catálogo',
     description:
       'Colocación y fabricación de enganches, bochas de acero y portabicicletas para tu vehículo.',
     photos: [
-      `${P}enganche-auto.jpg`,
-      `${P}bocha-acero.jpg`,
-      `${P}portabici.jpg`,
-      `${P}accesorios.jpg`,
-      `${P}juntas.jpg`,
+      `${F}enganches-amarok.webp`,
+      `${F}enganches-tres-modelos.webp`,
+      `${F}enganches-portabicicletas.webp`,
+      `${F}enganches-camionetas.webp`,
+      `${F}enganches-hilux.webp`,
     ],
   },
   {

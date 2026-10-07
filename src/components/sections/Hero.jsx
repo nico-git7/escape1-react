@@ -1,7 +1,9 @@
 const METRICS = [
-  { title: 'Autos', text: 'Original y deportivo' },
-  { title: 'Motos', text: 'Adaptación a medida' },
-  { title: 'A medida', text: 'Fabricación en acero inox.' },
+  { title: 'Autos y camionetas', text: 'Original y deportivo' },
+  { title: 'Motos', text: 'Tachos deportivos y adaptación a medida en acero inox.' },
+  { title: 'Fabricación', text: 'Fabricación en acero inox.' },
+  { title: 'Enganches', text: 'Enganches nuevos, reforzados y de todas las marcas' },
+  { title: 'Servicios', text: 'Diagnóstico computarizado y reprogramación' },
 ];
 
 const Hero = () => (
@@ -12,7 +14,7 @@ const Hero = () => (
         <p className="eyebrow" data-reveal>Taller especializado · Tucumán</p>
         <h1 data-reveal="1">Sonido, rendimiento<br />y <em>precisión.</em></h1>
         <p className="hero-copy" data-reveal="2">
-          Escapes originales, deportivos y fabricación a medida para autos y motos.
+          Escapes originales, deportivos y fabricación a medida para autos, camionetas y motos.
           Trabajos en acero inoxidable, pensados para tu vehículo.
         </p>
         <div className="hero-actions" data-reveal="3">

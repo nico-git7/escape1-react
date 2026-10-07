@@ -5,13 +5,13 @@ const MARQUEE_WORDS = [
   'Catalizadores',
   'Dowpipes',
   'Acero inoxidable',
-  'Autos y motos',
+  'Autos, camionetas y motos',
 ];
 
 const CATEGORY_TILES = [
   { href: '#servicios', image: '/img/stock/cat-originales.jpg', alt: 'Escape original', label: 'Escapes originales' },
   { href: '#servicios', image: '/img/stock/cat-deportiva.jpg', alt: 'Escape deportivo', label: 'Línea deportiva' },
-  { href: '#catalogo', image: '/img/stock/cat-autos.jpg', alt: 'Sistema de escape para auto', label: 'Autos y camionetas' },
+  { href: '#catalogo', image: '/img/stock/cat-autos.jpg', alt: 'Sistema de escape para auto y camioneta', label: 'Autos y camionetas' },
   { href: '#servicios', image: '/img/stock/cat-catalizadores.jpg', alt: 'Catalizador', label: 'Catalizadores' },
   { href: '#catalogo', image: '/img/stock/cat-accesorios.jpg', alt: 'Accesorios para vehículos', label: 'Accesorios' },
 ];

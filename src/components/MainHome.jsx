@@ -7,8 +7,8 @@ import BudgetForm from './sections/BudgetForm';
 import AppointmentForm from './sections/AppointmentForm';
 import LocationContact from './sections/LocationContact';
 
-// preset / onRequestBudget vienen de App, así también se puede precargar el
-// presupuesto desde la página de detalle de un producto del catálogo.
+// preset / onRequestBudget vienen de App: el presupuesto se precarga al tocar
+// "Consultar servicio" en la sección de servicios.
 const MainHome = ({ preset, onRequestBudget }) => {
   // Cuando se clickea "Consultar servicio", precarga el select del presupuesto
   // y hace scroll suave hasta esa sección

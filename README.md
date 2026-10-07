@@ -1,6 +1,6 @@
 # Escape1: sitio web para taller de escapes
 
-Sitio web para **Escape1**, un taller de escapes para autos y motos de San Miguel de Tucumán, Argentina. Desarrollado con **React** y **Vite** para un cliente real.
+Sitio web para **Escape1**, un taller de escapes para autos, camionetas y motos de San Miguel de Tucumán, Argentina. Desarrollado con **React** y **Vite** para un cliente real.
 
 **🔗 Ver online: [escape1-opal.vercel.app](https://escape1-opal.vercel.app/)**
 
@@ -10,7 +10,7 @@ Sitio web para **Escape1**, un taller de escapes para autos y motos de San Migue
 
 - **Catálogo con fichas de producto:** cada categoría tiene su propia página (`#/catalogo/<producto>`) con visor de fotos, miniaturas y navegación con flechas del teclado.
 - **Presupuestos y turnos por WhatsApp:** los formularios validan los datos y arman un mensaje prolijo que se abre directo en WhatsApp, el canal principal del taller con sus clientes. Desde un servicio o un producto, el formulario se precarga solo.
-- **Galería de trabajos:** fotos y videos por categoría (autos y motos). Los videos se reproducen solos solo mientras están en pantalla, para ahorrar datos y batería, y se abren en un visor navegable.
+- **Galería de trabajos:** fotos y videos por categoría (autos, camionetas y motos). Los videos se reproducen solos solo mientras están en pantalla, para ahorrar datos y batería, y se abren en un visor navegable.
 - **Diseño responsive:** pensado primero para el celular, desde 360 px hasta pantallas grandes.
 - **Animaciones sutiles:** aparición al hacer scroll, header que se compacta y franja de servicios en movimiento. Todo se desactiva si el usuario tiene activado "reducir movimiento".
 - **Accesibilidad:** navegación completa por teclado, foco visible, textos para lectores de pantalla y "saltar al contenido".

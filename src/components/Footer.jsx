@@ -9,7 +9,7 @@ const Footer = () => (
         <a className="logo" href="#inicio" aria-label="Escape1, volver al inicio">
           <span className="e1">Escape</span><span className="e2">1</span>
         </a>
-        <p>Taller especializado en escapes originales, deportivos y fabricación a medida para autos y motos.</p>
+        <p>Taller especializado en escapes originales, deportivos y fabricación a medida para autos, camionetas y motos.</p>
       </div>
 
       <nav className="footer-col" aria-label="Secciones">
