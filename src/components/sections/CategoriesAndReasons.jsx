@@ -3,17 +3,17 @@ const MARQUEE_WORDS = [
   'Línea deportiva',
   'Fabricación a medida',
   'Catalizadores',
-  'Dowpipes',
+  'Downpipes',
   'Acero inoxidable',
   'Autos, camionetas y motos',
 ];
 
 const CATEGORY_TILES = [
-  { href: '#servicios', image: '/img/stock/cat-originales.jpg', alt: 'Escape original', label: 'Escapes originales' },
-  { href: '#servicios', image: '/img/stock/cat-deportiva.jpg', alt: 'Escape deportivo', label: 'Línea deportiva' },
-  { href: '#catalogo', image: '/img/stock/cat-autos.jpg', alt: 'Sistema de escape para auto y camioneta', label: 'Autos y camionetas' },
+  { href: '#servicios', image: '/img/categorias/originales.webp', alt: 'Silenciador original junto a un Peugeot 206', label: 'Escapes originales' },
+  { href: '#servicios', image: '/img/categorias/deportiva.webp', alt: 'Silenciadores deportivos Escape1', label: 'Línea deportiva' },
+  { href: '#catalogo', image: '/img/categorias/camionetas.webp', alt: 'Camioneta en el taller', label: 'Autos y camionetas' },
   { href: '#servicios', image: '/img/stock/cat-catalizadores.jpg', alt: 'Catalizador', label: 'Catalizadores' },
-  { href: '#catalogo', image: '/img/stock/cat-accesorios.jpg', alt: 'Accesorios para vehículos', label: 'Accesorios' },
+  { href: '#catalogo', image: '/img/categorias/accesorios.webp', alt: 'Enganches colgados en la pared del taller', label: 'Accesorios' },
 ];
 
 const REASONS = [

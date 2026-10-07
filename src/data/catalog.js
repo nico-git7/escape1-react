@@ -48,7 +48,7 @@ const catalogItems = [
     title: 'Downpipe y reprogramación',
     image: `${S}catalogo-downpipe.jpg`,
     alt: 'Downpipe y reprogramación',
-    service: 'Dowpipe a medida',
+    service: 'Downpipe a medida',
     description:
       'Downpipe a medida, catalizadores y reprogramación (DPF - EGR OFF). Contanos el modelo de tu vehículo y te asesoramos.',
     photos: [
