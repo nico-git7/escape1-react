@@ -41,6 +41,7 @@ const catalogItems = [
       `${F}deportivos-silenciadores-escape1.webp`,
       `${F}deportivos-escapes-a-la-venta.webp`,
       `${F}deportivos-silenciadores-en-mesa.webp`,
+      `${P}deportivo1.jpeg`,
     ],
   },
   {
@@ -71,6 +72,7 @@ const catalogItems = [
       `${F}acero-silenciadores-silenpro.webp`,
       `${F}acero-equipos-completos.webp`,
       `${F}acero-escapes-inoxidable.webp`,
+      `${P}inoxidable1.jpg`,
     ],
   },
   {
@@ -116,9 +118,9 @@ const catalogItems = [
     photos: [
       `${P}juntas.jpg`,
       `${P}accesorios.jpg`,
-      `${P}bocha-acero.jpg`,
-      `${P}precamara.jpg`,
-      `${P}codo-escape.jpg`,
+      `${P}soporte-goma.jpg`,
+      `${P}abrazaderas-juntas.jpg`,
+      `${P}abrazaderas1.jpg`,
     ],
   },
 ];
