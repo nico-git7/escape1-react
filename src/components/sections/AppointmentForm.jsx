@@ -16,25 +16,7 @@ const AppointmentForm = () => {
   const [status, setStatus] = useState('');
   const [minDate, setMinDate] = useState(() => localDateValue());
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const form = formRef.current;
-    if (!form.reportValidity()) return;
-    const values = new FormData(form);
-    setStatus('Abriendo WhatsApp con tu solicitud…');
-    openWhatsApp([
-      'Hola, quiero solicitar un turno desde la web.',
-      `• Nombre: ${values.get('nombre')}`,
-      `• Teléfono: ${values.get('telefono')}`,
-      `• Vehículo: ${values.get('vehiculo')}`,
-      `• Servicio: ${values.get('servicio')}`,
-      `• Fecha preferida: ${formatDate(values.get('fecha'))}`,
-      `• Horario preferido: ${values.get('hora') || 'A coordinar'}`,
-      values.get('comentario') ? `• Comentario: ${values.get('comentario')}` : '',
-    ]);
-    form.reset();
-    setMinDate(localDateValue());
-  };
+  
 
   return (
     <section className="photo-section" id="turnos">

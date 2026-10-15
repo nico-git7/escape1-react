@@ -35,7 +35,7 @@ const Footer = () => (
           <li>
             <a href="mailto:contacto@escape1.com.ar">
               <svg className="icon" aria-hidden="true"><use href="#icon-mail" /></svg>
-              contacto@escape1.com.ar
+              
             </a>
           </li>
           <li>

@@ -11,8 +11,8 @@ const Hero = () => (
     <img className="ps-bg hero-bg" src="/img/galeria/fondo.jpeg" alt="" fetchPriority="high" />
     <div className="wrap hero-layout">
       <div>
-        <p className="eyebrow" data-reveal>Taller especializado · Tucumán</p>
-        <h1 data-reveal="1">Sonido, rendimiento<br />y <em>precisión.</em></h1>
+        <p className="eyebrow" data-reveal>Taller especializado en escapes · Tucumán</p>
+        <h1 data-reveal="1">Sonido, rendimiento, calidad y <em>servicio.</em></h1>
         <p className="hero-copy" data-reveal="2">
           Escapes originales, deportivos y fabricación a medida para autos, camionetas y motos.
           Trabajos en acero inoxidable, pensados para tu vehículo.

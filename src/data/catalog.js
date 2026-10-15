@@ -38,10 +38,11 @@ const catalogItems = [
       'Escapes deportivos para ganar sonido y respuesta. Colocamos y fabricamos sistemas completos, silenciadores y colas, con terminaciones en acero.',
     photos: [
       `${F}deportivos-medio-equipo-silen.webp`,
-      `${F}deportivos-silenciadores-escape1.webp`,
       `${F}deportivos-escapes-a-la-venta.webp`,
+      `${F}deportivos-silenciadores-escape1.webp`,
       `${F}deportivos-silenciadores-en-mesa.webp`,
       `${P}deportivo1.jpeg`,
+      `${P}dep1.jpeg`,
     ],
   },
   {
@@ -54,10 +55,10 @@ const catalogItems = [
       'Downpipe a medida, catalizadores y reprogramación (DPF - EGR OFF). Contanos el modelo de tu vehículo y te asesoramos.',
     photos: [
       `${P}dowpipe.jpg`,
-      `${P}catalizadores.jpg`,
-      `${P}ss1.jpeg`,
-      `${P}sistema-escape1.jpg`,
-      `${P}bora.jpeg`,
+      `${P}flex1.jpeg`,
+      `${P}flex2.jpeg`,
+      `${P}flex3.jpeg`,
+      `${P}flex4.jpeg`,
     ],
   },
   {
@@ -73,6 +74,7 @@ const catalogItems = [
       `${F}acero-equipos-completos.webp`,
       `${F}acero-escapes-inoxidable.webp`,
       `${P}inoxidable1.jpg`,
+      `${P}inox4.jpeg`
     ],
   },
   {
@@ -84,11 +86,12 @@ const catalogItems = [
     description:
       'Escapes, codos y precámaras para motos. Repuestos, adaptación y fabricación a medida.',
     photos: [
-      `${P}escapes-originales.jpg`,
-      `${P}akra.jpg`,
-      `${P}escapes-deportivos.jpg`,
-      `${P}codo-escape.jpg`,
-      `${P}precamara.jpg`,
+      `${P}moto1.PNG`,
+      `${P}moto7.png`,
+      `${P}moto2.jpeg`,
+      `${P}moto3.jpeg`,
+      `${P}moto4.jpeg`,
+      `${P}moto5.jpeg`,
     ],
   },
   {
@@ -101,7 +104,7 @@ const catalogItems = [
       'Colocación y fabricación de enganches, bochas de acero y portabicicletas para tu vehículo.',
     photos: [
       `${F}enganches-amarok.webp`,
-      `${F}enganches-tres-modelos.webp`,
+      `${P}enganche1.png`,
       `${F}enganches-portabicicletas.webp`,
       `${F}enganches-camionetas.webp`,
       `${F}enganches-hilux.webp`,

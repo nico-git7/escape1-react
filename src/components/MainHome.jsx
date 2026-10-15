@@ -28,7 +28,6 @@ const MainHome = ({ preset, onRequestBudget }) => {
       <Gallery />
       <Catalog />
       <BudgetForm preset={preset} />
-      <AppointmentForm />
       <LocationContact />
     </main>
   );
