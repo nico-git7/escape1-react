@@ -1,0 +1,14 @@
+# Configuración del servidor de Hostinger (Apache / LiteSpeed).
+# Vite la copia a dist/ en el build: hay que subirla junto con el resto.
+
+Options -MultiViews
+RewriteEngine On
+
+# /catalogo/motos/ -> /catalogo/motos (una sola dirección por página para Google)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [L,R=301]
+
+# /catalogo/motos -> muestra catalogo/motos.html (el HTML que genera el build)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)$ $1.html [L]

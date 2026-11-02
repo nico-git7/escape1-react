@@ -19,13 +19,13 @@ const photo = (category, src) => ({ category, image: `/img/galeria/${src}` });
 const galleryItems = [
   // ---------- AUTOS ----------
   video('autos', 'golf'),
-  photo('autos', 'ss1.jpeg'),
+  photo('autos', 'ss1.webp'),
   video('autos', 'galeria-auto1'),
   video('autos', 'galeria-auto2'),
   video('autos', 'soldando-auto1'),
-  photo('autos', 'bora.jpeg'),
-  photo('autos', 'audi1.png'),
-  photo('autos', 'silen-pro1.jpeg'),
+  photo('autos', 'bora.webp'),
+  photo('autos', 'audi1.webp'),
+  photo('autos', 'silen-pro1.webp'),
 
   // ---------- MOTOS ----------
   video('motos', 'escape-moto'),
@@ -35,7 +35,7 @@ const galleryItems = [
   video('motos', 'soplete', { video: '/video/galeria/soplete.MP4', muted: true }),
   video('motos', 'escape-mt03', { muted: true }),
   video('motos', 'moto-s', { muted: true }),
-  photo('motos', 'moto6.jpg'),
+  photo('motos', 'moto6.webp'),
 ];
 
 export default galleryItems;

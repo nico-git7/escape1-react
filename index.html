@@ -1,18 +1,28 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-AR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Escape1: taller especializado en escapes originales, deportivos y fabricación a medida para autos, camionetas y motos en San Miguel de Tucumán.">
-    <title>Escape1 — Taller de escapes en Tucumán</title>
+    <!-- Título, descripción, link canónico, imagen para compartir y datos para Google:
+         los escribe scripts/prerender.js en cada página (ver src/utils/seo.js) -->
+    <!--app-head-->
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#0a0a0b" />
+    <script>
+      // Links viejos (#/catalogo/<producto>) que pueden estar compartidos: van a la URL nueva
+      if (/^#\/catalogo\/[\w-]+\/?$/.test(location.hash)) location.replace(location.hash.slice(1));
+      // Prepara las animaciones de aparición antes de que se vea la página (ver useReveal.js)
+      else if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('js-reveal');
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

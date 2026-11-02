@@ -7,7 +7,7 @@ import './CatalogDetail.css';
 
 // Si la ficha se abrió desde el catálogo, "volver" es ir atrás en el historial:
 // la home reaparece en el mismo punto donde estaba. Si se entró directo por el
-// link de la ficha, se usa el href normal (#catalogo).
+// link de la ficha, se usa el href normal (/#catalogo).
 const handleBack = (event) => {
   if (!openedFromHome()) return;
   event.preventDefault();
@@ -15,7 +15,7 @@ const handleBack = (event) => {
 };
 
 const BackLink = () => (
-  <a className="detail-back" href="#catalogo" onClick={handleBack}>
+  <a className="detail-back" href="/#catalogo" onClick={handleBack}>
     <Icon name="chevron-left" />
     Volver al catálogo
   </a>
@@ -102,7 +102,7 @@ const CatalogDetail = ({ slug }) => {
                 <Icon name="whatsapp" />
                 Consultar presupuesto
               </a>
-              <a className="btn btn-outline" href="#catalogo" onClick={handleBack}>Ver más productos</a>
+              <a className="btn btn-outline" href="/#catalogo" onClick={handleBack}>Ver más productos</a>
             </div>
           </aside>
         </div>

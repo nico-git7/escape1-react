@@ -1,6 +1,7 @@
 import Icon from '../Icon';
 import catalogItems from '../../data/catalog';
 import { rememberHomeScroll } from '../../utils/scrollMemory';
+import { catalogPath } from '../../utils/useRoute';
 import { whatsAppLink } from '../../utils/whatsapp';
 
 const ASK_URL = whatsAppLink(['Hola, quiero consultar por un producto que no está en el catálogo de la web.']);
@@ -22,7 +23,7 @@ const Catalog = () => (
       <div className="cat-showcase">
         <a
           className="cat-feature"
-          href={`#/catalogo/${featured.slug}`}
+          href={catalogPath(featured.slug)}
           aria-label={`Ver fotos de ${featured.title}`}
           onClick={rememberHomeScroll}
           data-reveal
@@ -44,7 +45,7 @@ const Catalog = () => (
           {rest.map((item, index) => (
             <a
               className="cat-thumb"
-              href={`#/catalogo/${item.slug}`}
+              href={catalogPath(item.slug)}
               key={item.slug}
               aria-label={`Ver fotos de ${item.title}`}
               onClick={rememberHomeScroll}

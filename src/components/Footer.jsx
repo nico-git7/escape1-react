@@ -7,7 +7,7 @@ const Footer = () => (
     <div className="finish-line" aria-hidden="true" />
     <div className="wrap footer-grid">
       <div className="footer-brand">
-        <a className="logo" href="#inicio" aria-label="Escape1, volver al inicio">
+        <a className="logo" href="/#inicio" aria-label="Escape1, volver al inicio">
           <img src="/img/logo-soldador.webp" alt="Escape1 Repro-Chip" width="972" height="654" loading="lazy" />
         </a>
         <p>Taller especializado en escapes originales, deportivos y fabricación a medida para autos, camionetas y motos.</p>
@@ -17,9 +17,9 @@ const Footer = () => (
         <h2>Secciones</h2>
         <ul>
           {NAV_ITEMS.map((item) => (
-            <li key={item.href}><a href={item.href}>{item.label}</a></li>
+            <li key={item.href}><a href={`/${item.href}`}>{item.label}</a></li>
           ))}
-          <li><a href="#presupuesto">Presupuesto</a></li>
+          <li><a href="/#presupuesto">Presupuesto</a></li>
         </ul>
       </nav>
 
@@ -63,8 +63,10 @@ const Footer = () => (
       </div>
     </div>
     <div className="wrap footer-bottom">
-      <span>© {new Date().getFullYear()} Escape1 · {CITY}</span>
-      <a href="#inicio" className="footer-top">
+      {/* El año se calcula en el build y otra vez en el navegador: si cambia de año
+          entre medio, que React use el del navegador sin quejarse */}
+      <span suppressHydrationWarning>© {new Date().getFullYear()} Escape1 · {CITY}</span>
+      <a href="/#inicio" className="footer-top">
         Volver arriba
         <Icon name="arrow" />
       </a>
