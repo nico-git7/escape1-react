@@ -1,12 +1,10 @@
-import { DISPLAY_PHONE, WHATSAPP_NUMBER } from '../../utils/whatsapp';
-
-const MAPS_URL = 'https://www.google.com/maps?q=escape1+San+Miguel+de+Tucum%C3%A1n';
-const EMAIL = 'contacto@escape1.com.ar';
+import Icon from '../Icon';
+import { ADDRESS, CITY, DISPLAY_PHONE, HOURS, MAPS_URL, PHONE_URL, SOCIALS, WHATSAPP_URL } from '../../data/site';
 
 const CONTACT_CARDS = [
-  { icon: 'icon-whatsapp', title: 'WhatsApp', value: DISPLAY_PHONE, href: `https://wa.me/${WHATSAPP_NUMBER}`, external: true, featured: true },
-  { icon: 'icon-phone', title: 'Teléfono', value: DISPLAY_PHONE, href: `tel:+${WHATSAPP_NUMBER}` },
-  { icon: 'icon-mail', title: 'Email', value: EMAIL, href: `mailto:${EMAIL}` },
+  { icon: 'whatsapp', title: 'WhatsApp', value: DISPLAY_PHONE, href: WHATSAPP_URL, external: true, featured: true },
+  { icon: 'phone', title: 'Teléfono', value: DISPLAY_PHONE, href: PHONE_URL },
+  ...SOCIALS.map((social) => ({ icon: social.id, title: social.label, value: social.handle, href: social.url, external: true })),
 ];
 
 const LocationContact = () => (
@@ -22,25 +20,25 @@ const LocationContact = () => (
         <div className="two-col">
           <div className="map-frame" data-reveal="1">
             <iframe
-              title="Mapa de Escape1 en San Miguel de Tucumán"
+              title={`Mapa de Escape1 en ${CITY}`}
               src={`${MAPS_URL}&output=embed`}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
           <aside className="location-card" data-reveal="2">
-            <h3>San Miguel de Tucumán</h3>
+            <h3>{CITY}</h3>
             <p className="location-line">
-              <svg className="icon" aria-hidden="true"><use href="#icon-pin" /></svg>
-              <span>Santiago y América<br />San Miguel de Tucumán</span>
+              <Icon name="pin" />
+              <span>{ADDRESS}<br />{CITY}</span>
             </p>
             <p className="location-line">
-              <svg className="icon" aria-hidden="true"><use href="#icon-clock" /></svg>
-              <span><strong>Lunes a sábado</strong><br />9:00 a 19:00</span>
+              <Icon name="clock" />
+              <span><strong>{HOURS.days}</strong><br />{HOURS.open} a {HOURS.close}</span>
             </p>
             <a className="btn btn-outline" href={MAPS_URL} target="_blank" rel="noopener">
               Cómo llegar
-              <svg className="icon" aria-hidden="true"><use href="#icon-arrow" /></svg>
+              <Icon name="arrow" />
             </a>
           </aside>
         </div>
@@ -53,7 +51,7 @@ const LocationContact = () => (
         <div className="contact-head" data-reveal>
           <p className="eyebrow">Hablemos</p>
           <h2 className="section-title">¿Listo para cambiar el sonido de tu vehículo?</h2>
-          <p className="section-sub">Escribinos, llamanos o acercate al taller. Te ayudamos a encontrar la mejor alternativa para tu vehículo.</p>
+          <p className="section-sub">Escribinos, llamanos, seguinos en redes o acercate al taller. Te ayudamos a encontrar la mejor alternativa para tu vehículo.</p>
         </div>
         <div className="contact-grid">
           {CONTACT_CARDS.map((card, index) => (
@@ -65,7 +63,7 @@ const LocationContact = () => (
               {...(card.external ? { target: '_blank', rel: 'noopener' } : {})}
             >
               <span className="contact-icon" aria-hidden="true">
-                <svg className="icon"><use href={`#${card.icon}`} /></svg>
+                <Icon name={card.icon} />
               </span>
               <h3>{card.title}</h3>
               <span>{card.value}</span>

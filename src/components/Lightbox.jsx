@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import Icon from './Icon';
 
-// items: lista de { caption, image?, video?, youtube?, icon } | null
+// items: lista de { caption, image?, video?, poster?, youtube?, muted? } | null
 // index: posición del item abierto. onClose(): cierra. onNavigate(nuevoIndex): cambia de item.
 const Lightbox = ({ items, index, onClose, onNavigate }) => {
   const [failedSrc, setFailedSrc] = useState(null);
@@ -19,8 +20,8 @@ const Lightbox = ({ items, index, onClose, onNavigate }) => {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') onClose();
       if (!hasNav) return;
-      if (event.key === 'ArrowRight') onNavigate((index + 1) % total);
-      if (event.key === 'ArrowLeft') onNavigate((index - 1 + total) % total);
+      const step = { ArrowRight: 1, ArrowLeft: -1 }[event.key];
+      if (step) onNavigate((index + step + total) % total);
     };
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
@@ -49,16 +50,16 @@ const Lightbox = ({ items, index, onClose, onNavigate }) => {
       }}
     >
       <button className="lightbox-close" type="button" ref={closeButtonRef} onClick={onClose} aria-label="Cerrar">
-        <svg className="icon" aria-hidden="true"><use href="#icon-close" /></svg>
+        <Icon name="close" />
       </button>
 
       {item && hasNav && (
         <>
           <button className="lightbox-nav prev" type="button" onClick={() => go(-1)} aria-label="Anterior">
-            <svg className="icon" aria-hidden="true"><use href="#icon-chevron-left" /></svg>
+            <Icon name="chevron-left" />
           </button>
           <button className="lightbox-nav next" type="button" onClick={() => go(1)} aria-label="Siguiente">
-            <svg className="icon" aria-hidden="true"><use href="#icon-chevron-right" /></svg>
+            <Icon name="chevron-right" />
           </button>
         </>
       )}
@@ -80,11 +81,7 @@ const Lightbox = ({ items, index, onClose, onNavigate }) => {
         {isPhoto && !imageFailed && (
           <img key={item.image} src={item.image} alt={caption} onError={() => setFailedSrc(item.image)} />
         )}
-        {isPhoto && imageFailed && (
-          <svg className="icon lightbox-fallback" aria-hidden="true">
-            <use href={`#${item.icon || 'icon-custom'}`} />
-          </svg>
-        )}
+        {isPhoto && imageFailed && <Icon name="custom" className="lightbox-fallback" />}
         <figcaption className="lightbox-caption" id="lightboxCaption">
           <span>{caption}</span>
           {hasNav && <span className="lightbox-count">{index + 1} / {total}</span>}

@@ -1,3 +1,6 @@
+import Icon from '../Icon';
+import { HOURS } from '../../data/site';
+
 const METRICS = [
   { title: 'Autos y camionetas', text: 'Original y deportivo' },
   { title: 'Motos', text: 'Tachos deportivos y adaptación a medida en acero inox.' },
@@ -20,7 +23,7 @@ const Hero = () => (
         <div className="hero-actions" data-reveal="3">
           <a className="btn btn-solid" href="#presupuesto">
             Pedí presupuesto
-            <svg className="icon" aria-hidden="true"><use href="#icon-arrow" /></svg>
+            <Icon name="arrow" />
           </a>
           <a className="btn btn-outline" href="#servicios">Conocé los servicios</a>
         </div>
@@ -41,8 +44,8 @@ const Hero = () => (
         <strong>Traé tu vehículo. Lo vemos juntos.</strong>
         <p>Contanos qué buscás: reparación, cambio, sonido deportivo o una solución fabricada desde cero.</p>
         <p className="hero-panel-hours">
-          <svg className="icon" aria-hidden="true"><use href="#icon-clock" /></svg>
-          Lunes a sábado · 9:00 a 19:00
+          <Icon name="clock" />
+          {HOURS.days} · {HOURS.open} a {HOURS.close}
         </p>
       </aside>
     </div>

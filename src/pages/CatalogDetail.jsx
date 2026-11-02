@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Icon from '../components/Icon';
 import catalogItems from '../data/catalog';
 import { openedFromHome } from '../utils/scrollMemory';
 import { whatsAppLink } from '../utils/whatsapp';
@@ -13,8 +14,15 @@ const handleBack = (event) => {
   window.history.back();
 };
 
-// item: producto de data/catalog.js (o undefined si el slug no existe)
+const BackLink = () => (
+  <a className="detail-back" href="#catalogo" onClick={handleBack}>
+    <Icon name="chevron-left" />
+    Volver al catálogo
+  </a>
+);
+
 const CatalogDetail = ({ slug }) => {
+  // Producto de data/catalog.js (o undefined si el slug no existe)
   const item = catalogItems.find((entry) => entry.slug === slug);
   const [current, setCurrent] = useState(0);
 
@@ -36,7 +44,7 @@ const CatalogDetail = ({ slug }) => {
     return (
       <main id="contenido" className="detail-page">
         <div className="wrap">
-          <a className="detail-back" href="#catalogo" onClick={handleBack}><svg className="icon" aria-hidden="true"><use href="#icon-chevron-left" /></svg>Volver al catálogo</a>
+          <BackLink />
           <h1 className="section-title">Producto no encontrado</h1>
         </div>
       </main>
@@ -46,7 +54,7 @@ const CatalogDetail = ({ slug }) => {
   return (
     <main id="contenido" className="detail-page">
       <div className="wrap">
-        <a className="detail-back" href="#catalogo" onClick={handleBack}><svg className="icon" aria-hidden="true"><use href="#icon-chevron-left" /></svg>Volver al catálogo</a>
+        <BackLink />
         <div className="detail-layout">
           <div data-reveal>
             <div className="viewer">
@@ -57,8 +65,8 @@ const CatalogDetail = ({ slug }) => {
               />
               {total > 1 && (
                 <>
-                  <button className="viewer-btn prev" type="button" aria-label="Foto anterior" onClick={() => go(-1)}><svg className="icon" aria-hidden="true"><use href="#icon-chevron-left" /></svg></button>
-                  <button className="viewer-btn next" type="button" aria-label="Foto siguiente" onClick={() => go(1)}><svg className="icon" aria-hidden="true"><use href="#icon-chevron-right" /></svg></button>
+                  <button className="viewer-btn prev" type="button" aria-label="Foto anterior" onClick={() => go(-1)}><Icon name="chevron-left" /></button>
+                  <button className="viewer-btn next" type="button" aria-label="Foto siguiente" onClick={() => go(1)}><Icon name="chevron-right" /></button>
                 </>
               )}
               <span className="viewer-count">{current + 1} / {total}</span>
@@ -91,7 +99,7 @@ const CatalogDetail = ({ slug }) => {
                 target="_blank"
                 rel="noopener"
               >
-                <svg className="icon" aria-hidden="true"><use href="#icon-whatsapp" /></svg>
+                <Icon name="whatsapp" />
                 Consultar presupuesto
               </a>
               <a className="btn btn-outline" href="#catalogo" onClick={handleBack}>Ver más productos</a>

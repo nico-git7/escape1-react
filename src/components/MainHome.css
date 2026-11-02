@@ -259,7 +259,7 @@ section { position: relative; padding: clamp(4.5rem, 9vw, 7rem) 0; }
 .contact-head { max-width: 760px; margin: 0 auto 3rem; text-align: center; }
 .contact-head .eyebrow::after { width: 28px; height: 1px; content: ""; background: currentColor; }
 .contact-head .section-sub { margin: 1.25rem auto 0; }
-.contact-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; }
+.contact-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1rem; }
 .contact-card { display: grid; min-height: 210px; padding: 1.75rem 1.5rem; place-items: center; align-content: center; gap: .5rem; text-align: center; transition: transform .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease), box-shadow .25s var(--ease); }
 .contact-card:hover { border-color: rgba(212,22,29,.55); background: var(--surface-2); box-shadow: 0 20px 40px rgba(0,0,0,.35); transform: translateY(-5px); }
 .contact-icon { width: 60px; height: 60px; margin-bottom: .5rem; border: 1px solid rgba(212,22,29,.35); border-radius: 50%; background: var(--accent-soft); transition: background .25s var(--ease), color .25s var(--ease); }
@@ -274,6 +274,7 @@ section { position: relative; padding: clamp(4.5rem, 9vw, 7rem) 0; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 980px) {
+  .contact-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .services-mosaic { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .service-tile.is-large { min-height: 340px; }
   .about { grid-template-columns: 1fr; }

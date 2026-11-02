@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import Icon from '../Icon';
 import galleryItems, { galleryCategories } from '../../data/gallery';
 import Lightbox from '../Lightbox';
 
@@ -79,14 +80,14 @@ const GalleryTile = ({ item, label, onOpen }) => {
       )}
       {!filePreview && (!thumb || imageFailed) && (
         <span className="gallery-fallback">
-          <svg className="icon" aria-hidden="true"><use href={`#${item.icon || 'icon-custom'}`} /></svg>
+          <Icon name="custom" />
         </span>
       )}
       {/* El botón de play solo en videos de YouTube (los propios ya se ven reproduciéndose) */}
       {video && !filePreview && <span className="play-badge" aria-hidden="true" />}
       {video && filePreview && <span className="video-tag" aria-hidden="true">Video</span>}
       <span className="gallery-zoom" aria-hidden="true">
-        <svg className="icon"><use href="#icon-arrow" /></svg>
+        <Icon name="arrow" />
       </span>
       {item.caption && <span className="cap">{item.caption}</span>}
     </button>
@@ -131,10 +132,10 @@ const GalleryLane = ({ category, items, onOpen }) => {
         <p>{items.length} {items.length === 1 ? 'trabajo' : 'trabajos'}</p>
         <div className="gallery-lane-arrows">
           <button type="button" aria-label={`${category.label}: anteriores`} disabled={edges.atStart} onClick={() => slide(-1)}>
-            <svg className="icon" aria-hidden="true"><use href="#icon-chevron-left" /></svg>
+            <Icon name="chevron-left" />
           </button>
           <button type="button" aria-label={`${category.label}: siguientes`} disabled={edges.atEnd} onClick={() => slide(1)}>
-            <svg className="icon" aria-hidden="true"><use href="#icon-chevron-right" /></svg>
+            <Icon name="chevron-right" />
           </button>
         </div>
       </div>

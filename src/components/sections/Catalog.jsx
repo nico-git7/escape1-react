@@ -1,3 +1,4 @@
+import Icon from '../Icon';
 import catalogItems from '../../data/catalog';
 import { rememberHomeScroll } from '../../utils/scrollMemory';
 import { whatsAppLink } from '../../utils/whatsapp';
@@ -35,7 +36,7 @@ const Catalog = () => (
             <p>{featured.description}</p>
             <span className="cat-item-cta">
               Ver fotos
-              <svg className="icon" aria-hidden="true"><use href="#icon-arrow" /></svg>
+              <Icon name="arrow" />
             </span>
           </div>
         </a>
@@ -60,7 +61,7 @@ const Catalog = () => (
       </div>
       <p className="cat-note" data-reveal>
         ¿Buscás algo que no está en la lista?{' '}
-        <a href={ASK_URL} target="_blank" rel="noopener">Consultanos <svg className="icon" aria-hidden="true"><use href="#icon-arrow" /></svg></a>
+        <a href={ASK_URL} target="_blank" rel="noopener">Consultanos <Icon name="arrow" /></a>
       </p>
     </div>
   </section>

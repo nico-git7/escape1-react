@@ -1,3 +1,5 @@
+import Icon from '../Icon';
+
 const MARQUEE_WORDS = [
   'Escapes originales',
   'Línea deportiva',
@@ -54,7 +56,7 @@ const CategoriesAndReasons = () => (
           <span className="cat-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
           <span className="cat-label">
             {tile.label}
-            <svg className="icon" aria-hidden="true"><use href="#icon-arrow" /></svg>
+            <Icon name="arrow" />
           </span>
         </a>
       ))}

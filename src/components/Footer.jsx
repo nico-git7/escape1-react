@@ -1,5 +1,6 @@
+import Icon from './Icon';
 import NAV_ITEMS from '../data/nav';
-import { DISPLAY_PHONE, WHATSAPP_NUMBER } from '../utils/whatsapp';
+import { ADDRESS, CITY, DISPLAY_PHONE, HOURS, SOCIALS, WHATSAPP_URL } from '../data/site';
 
 const Footer = () => (
   <footer className="site-footer">
@@ -19,7 +20,6 @@ const Footer = () => (
             <li key={item.href}><a href={item.href}>{item.label}</a></li>
           ))}
           <li><a href="#presupuesto">Presupuesto</a></li>
-          <li><a href="#turnos">Turnos</a></li>
         </ul>
       </nav>
 
@@ -27,21 +27,23 @@ const Footer = () => (
         <h2>Contacto</h2>
         <ul>
           <li>
-            <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener">
-              <svg className="icon" aria-hidden="true"><use href="#icon-whatsapp" /></svg>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener">
+              <Icon name="whatsapp" />
               {DISPLAY_PHONE}
             </a>
           </li>
-          <li>
-            <a href="mailto:contacto@escape1.com.ar">
-              <svg className="icon" aria-hidden="true"><use href="#icon-mail" /></svg>
-              
-            </a>
-          </li>
+          {SOCIALS.map((social) => (
+            <li key={social.id}>
+              <a href={social.url} target="_blank" rel="noopener" aria-label={`${social.label}: ${social.handle}`}>
+                <Icon name={social.id} />
+                {social.handle}
+              </a>
+            </li>
+          ))}
           <li>
             <span>
-              <svg className="icon" aria-hidden="true"><use href="#icon-pin" /></svg>
-              Santiago y América, Tucumán
+              <Icon name="pin" />
+              {ADDRESS}, Tucumán
             </span>
           </li>
         </ul>
@@ -52,19 +54,19 @@ const Footer = () => (
         <ul>
           <li>
             <span>
-              <svg className="icon" aria-hidden="true"><use href="#icon-clock" /></svg>
-              Lunes a sábado
+              <Icon name="clock" />
+              {HOURS.days}
             </span>
           </li>
-          <li><span className="footer-hours">9:00 — 19:00</span></li>
+          <li><span className="footer-hours">{HOURS.open} — {HOURS.close}</span></li>
         </ul>
       </div>
     </div>
     <div className="wrap footer-bottom">
-      <span>© {new Date().getFullYear()} Escape1 · San Miguel de Tucumán</span>
+      <span>© {new Date().getFullYear()} Escape1 · {CITY}</span>
       <a href="#inicio" className="footer-top">
         Volver arriba
-        <svg className="icon" aria-hidden="true"><use href="#icon-arrow" /></svg>
+        <Icon name="arrow" />
       </a>
     </div>
   </footer>

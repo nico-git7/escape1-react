@@ -1,3 +1,5 @@
+import Icon from '../Icon';
+
 const SERVICES = [
   { image: 'servicio-originales', title: 'Escapes originales', text: 'Reemplazo de silenciadores, precámaras, salidas y componentes dañados.', service: 'Cambio de escape original' },
   { image: 'servicio-deportivos', title: 'Escapes deportivos', text: 'Instalación y adaptación de líneas deportivas para autos, camionetas y motos.', service: 'Cambio de escape deportivo' },
@@ -38,7 +40,7 @@ const ServicesProcess = ({ onSelectService }) => (
                 <p>{service.text}</p>
                 <button className="service-link" type="button" onClick={() => onSelectService(service.service)}>
                   Consultar servicio
-                  <svg className="icon" aria-hidden="true"><use href="#icon-arrow" /></svg>
+                  <Icon name="arrow" />
                 </button>
               </div>
             </article>

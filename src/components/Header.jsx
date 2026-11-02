@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Icon from './Icon';
 import NAV_ITEMS from '../data/nav';
 
 const Header = () => {
@@ -79,7 +80,7 @@ const Header = () => {
           </ul>
           <a className="nav-cta" href="#presupuesto" onClick={closeMenu}>
             Pedí presupuesto
-            <svg className="icon" aria-hidden="true"><use href="#icon-arrow" /></svg>
+            <Icon name="arrow" />
           </a>
         </div>
         <button

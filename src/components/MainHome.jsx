@@ -4,7 +4,6 @@ import ServicesProcess from './sections/ServicesProcess';
 import Gallery from './sections/Gallery';
 import Catalog from './sections/Catalog';
 import BudgetForm from './sections/BudgetForm';
-import AppointmentForm from './sections/AppointmentForm';
 import LocationContact from './sections/LocationContact';
 
 // preset / onRequestBudget vienen de App: el presupuesto se precarga al tocar

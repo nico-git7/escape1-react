@@ -1,6 +1,6 @@
 // Se renderiza una sola vez (en App.jsx). Los íconos se usan en cualquier
-// parte de la app con <svg className="icon"><use href="#icon-x" /></svg>.
-// Todos son de trazo (stroke), salvo icon-whatsapp que es relleno.
+// parte de la app con <Icon name="x" /> (ver Icon.jsx).
+// Todos son de trazo (stroke), salvo icon-whatsapp e icon-tiktok que son relleno.
 const IconSprite = () => (
   <svg style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }} aria-hidden="true">
     <defs>
@@ -19,7 +19,10 @@ const IconSprite = () => (
       <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5Z" /><path d="M8 10h8M8 13h5" /></symbol>
       <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z" /><circle cx="12" cy="9" r="2.5" /></symbol>
       <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></symbol>
-      <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" /></symbol>
+      <symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".6" fill="currentColor" /></symbol>
+      <symbol id="icon-tiktok" viewBox="0 0 24 24">
+        <path fill="currentColor" stroke="none" d="M16.6 2h-3.4v13.2a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V8.9a6.4 6.4 0 1 0 5.4 6.3V8.6a8 8 0 0 0 4.4 1.3V6.5a4.5 4.5 0 0 1-4.4-4.5Z" />
+      </symbol>
       <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" /></symbol>
       <symbol id="icon-chevron-left" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7" /></symbol>
       <symbol id="icon-chevron-right" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" /></symbol>
