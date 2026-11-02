@@ -2,9 +2,9 @@
 // la dirección, el horario o una red social.
 
 // Dirección pública del sitio, sin barra al final. Se usa para el sitemap, los links
-// canónicos y la vista previa al compartir. Si el taller compra un dominio propio
-// (ej. escape1.com.ar), alcanza con cambiarlo acá.
-export const SITE_URL = 'https://escape1-opal.vercel.app';
+// canónicos y la vista previa al compartir. Si el sitio se muda a un dominio
+// distinto, alcanza con cambiarlo acá.
+export const SITE_URL = 'https://tallerescape1.com';
 
 export const WHATSAPP_NUMBER = '5493815452531';
 export const DISPLAY_PHONE = '+54 9 381 545-2531';

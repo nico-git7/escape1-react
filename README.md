@@ -2,7 +2,7 @@
 
 Sitio web para **Escape1**, un taller de escapes para autos, camionetas y motos de San Miguel de Tucumán, Argentina. Desarrollado con **React** y **Vite** para un cliente real.
 
-**🔗 Ver online: [escape1-opal.vercel.app](https://escape1-opal.vercel.app/)**
+**🔗 Ver online: [tallerescape1.com](https://tallerescape1.com/)**
 
 ![Inicio del sitio](docs/screenshots/home.jpg)
 
@@ -29,7 +29,7 @@ Sitio web para **Escape1**, un taller de escapes para autos, camionetas y motos 
 - **Vite**: entorno de desarrollo y build.
 - **CSS puro**: variables (design tokens), Grid, Flexbox y `clamp()` para tipografía fluida. Sin frameworks de estilos.
 - **ESLint**: con las reglas de React Hooks.
-- **Vercel**: hosting con despliegue automático desde GitHub.
+- **Hostinger**: hosting del sitio (`public/.htaccess` hace que `/catalogo/<producto>` muestre su página).
 
 Sin dependencias extra: el router de la ficha de producto, el prerender de las páginas, las animaciones de scroll y la integración con WhatsApp están hechos a mano.
 
@@ -92,7 +92,8 @@ El contenido está separado del código, así que no hace falta tocar componente
 - **Agregar un producto o cambiar sus fotos:** editar `src/data/catalog.js`. La página nueva, su título para Google y su entrada en el sitemap se generan solas en el build. Si querés una imagen propia para cuando se comparte el link, agregá una de 1200 × 630 en `public/img/compartir/` y ponela en `shareImage`.
 - **Sumar fotos o videos a la galería:** subir el archivo a `public/img/galeria/` o `public/video/galeria/` y agregarlo en `src/data/gallery.js`. Conviene subir las fotos en `.webp` y de no más de 1600 px de lado: las fotos del celular pesan varios MB y hacen lenta la página.
 - **Cambiar el teléfono, la dirección, el horario o las redes:** `src/data/site.js` (también actualiza los datos que lee Google).
-- **Si el sitio pasa a un dominio propio:** cambiar `SITE_URL` en `src/data/site.js`.
+- **Publicar cambios:** `npm run build` y subir todo el contenido de `dist/` a `public_html` en Hostinger, incluido el archivo oculto `.htaccess`.
+- **Si el sitio se muda a otro dominio:** cambiar `SITE_URL` en `src/data/site.js`.
 
 ## Créditos
 
