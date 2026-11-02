@@ -19,6 +19,30 @@ const saveData = () => Boolean(navigator.connection && navigator.connection.save
 const VideoPreview = ({ item }) => {
   const ref = useRef(null);
   const [load, setLoad] = useState(false);
+  // El poster tampoco se pide hasta que la tarjeta está cerca de la pantalla: los
+  // navegadores bajan los posters apenas ven el <video>, y eso le sacaba velocidad
+  // a la carga inicial de la página.
+  const [showPoster, setShowPoster] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || !('IntersectionObserver' in window)) {
+      setShowPoster(true);
+      return undefined;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setShowPoster(true);
+        observer.disconnect();
+      },
+      { rootMargin: '600px 0px 600px 0px' },
+    );
+    // Se mira la fila entera (y no la tarjeta) para que las tarjetas que todavía
+    // están escondidas hacia el costado ya tengan su poster al deslizar
+    observer.observe(el.closest('.gallery-lane') || el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const el = ref.current;
@@ -44,7 +68,7 @@ const VideoPreview = ({ item }) => {
       ref={ref}
       className="gallery-photo"
       src={load ? item.preview || item.video : undefined}
-      poster={item.poster}
+      poster={showPoster ? item.poster : undefined}
       autoPlay={load}
       muted
       loop

@@ -60,8 +60,8 @@ const Header = () => {
   return (
     <header className={`site-header${scrolled ? ' is-scrolled' : ''}${open ? ' menu-open' : ''}`}>
       <nav className="nav" aria-label="Navegación principal">
-        <a className="logo" href="#inicio" aria-label="Escape1, inicio" onClick={closeMenu}>
-          <img src="/img/logo-soldador.webp" alt="Escape1 Repro-Chip" width="972" height="654" />
+        <a className="logo" href="/#inicio" aria-label="Escape1, inicio" onClick={closeMenu}>
+          <img src="/img/logo-soldador.webp" alt="Escape1 Repro-Chip" width="972" height="654" fetchPriority="high" />
         </a>
         <div className={`nav-menu${open ? ' open' : ''}`} id="navMenu">
           <ul className="nav-links">
@@ -70,7 +70,7 @@ const Header = () => {
                 <a
                   className={activeHref === item.href ? 'active' : ''}
                   aria-current={activeHref === item.href ? 'location' : undefined}
-                  href={item.href}
+                  href={`/${item.href}`}
                   onClick={closeMenu}
                 >
                   {item.label}
@@ -78,7 +78,7 @@ const Header = () => {
               </li>
             ))}
           </ul>
-          <a className="nav-cta" href="#presupuesto" onClick={closeMenu}>
+          <a className="nav-cta" href="/#presupuesto" onClick={closeMenu}>
             Pedí presupuesto
             <Icon name="arrow" />
           </a>

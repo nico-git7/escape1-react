@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import './index.css';
 import './components/Header.css';
 import './components/Footer.css';
@@ -9,13 +9,22 @@ import MainHome from './components/MainHome';
 import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
 import CatalogDetail from './pages/CatalogDetail';
-import useHashRoute from './utils/useHashRoute';
+import useRoute from './utils/useRoute';
 import useReveal from './utils/useReveal';
 import { markOpenedFromHome, savedHomeScroll } from './utils/scrollMemory';
+import { applyPageMeta, getPageMeta } from './utils/seo';
 
-function App() {
-  const route = useHashRoute();
+// `initialPath` solo se usa al generar el HTML de cada página en el build
+// (ver src/entry-server.jsx). En el navegador la ruta sale de la URL.
+function App({ initialPath }) {
+  const route = useRoute(initialPath);
   useReveal(`${route.page}:${route.slug}`);
+
+  // Título, descripción y demás datos del <head> de la página actual
+  useEffect(() => {
+    applyPageMeta(getPageMeta(route.slug));
+  }, [route.slug]);
+
   // Servicio / detalle a precargar en el formulario de presupuesto
   const [preset, setPreset] = useState(null);
 

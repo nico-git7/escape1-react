@@ -66,6 +66,15 @@ button { cursor: pointer; }
    JS está activo (.js-reveal), así sin JS todo sigue visible. */
 .js-reveal [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); transition-delay: calc(var(--d, 0) * 90ms); }
 .js-reveal [data-reveal].is-visible { opacity: 1; transform: none; }
+/* La portada siempre está a la vista al cargar: aparece con una animación de CSS
+   apenas se pinta la página, sin esperar a que cargue el JavaScript (así Google
+   la mide como una página que carga rápido). */
+.js-reveal .hero [data-reveal]:not(.hero-metrics) { opacity: 1; transform: none; transition: none; animation: reveal-in .7s var(--ease) both; }
+.js-reveal .hero [data-reveal="1"] { animation-delay: 90ms; }
+.js-reveal .hero [data-reveal="2"] { animation-delay: 180ms; }
+.js-reveal .hero [data-reveal="3"] { animation-delay: 270ms; }
+.js-reveal .hero [data-reveal="4"] { animation-delay: 360ms; }
+@keyframes reveal-in { from { opacity: 0; transform: translateY(26px); } }
 
 @media (max-width: 760px) {
   :root { --header-h: 72px; }

@@ -11,11 +11,17 @@ const METRICS = [
 
 const Hero = () => (
   <section className="hero photo-section" id="inicio">
-    <img className="ps-bg hero-bg" src="/img/galeria/fondo.jpeg" alt="" fetchPriority="high" />
+    <img className="ps-bg hero-bg" src="/img/galeria/fondo.webp" alt="" fetchPriority="high" />
     <div className="wrap hero-layout">
       <div>
-        <p className="eyebrow" data-reveal>Taller especializado en escapes · Tucumán</p>
-        <h1 data-reveal="1">Sonido, rendimiento, calidad y <em>servicio.</em></h1>
+        {/* El rótulo va dentro del h1 para que el título principal de la página diga
+            qué es y dónde está el taller (lo que más mira Google) */}
+        <h1>
+          <span className="hero-kicker">
+            <span className="eyebrow" data-reveal>Taller especializado en escapes · Tucumán</span>
+          </span>
+          <span className="hero-title" data-reveal="1">Sonido, rendimiento, calidad y <em>servicio.</em></span>
+        </h1>
         <p className="hero-copy" data-reveal="2">
           Escapes originales, deportivos y fabricación a medida para autos, camionetas y motos.
           Trabajos en acero inoxidable, pensados para tu vehículo.
