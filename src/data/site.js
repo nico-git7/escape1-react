@@ -14,5 +14,5 @@ export const HOURS = { days: 'Lunes a sábado', open: '9:00', close: '19:00' };
 
 export const SOCIALS = [
   { id: 'instagram', label: 'Instagram', handle: '@escape1_2025', url: 'https://www.instagram.com/escape1_2025' },
-  { id: 'tiktok', label: 'TikTok', handle: '@escape_1_m', url: 'https://www.tiktok.com/@escape_1_m' },
+  { id: 'tiktok', label: 'TikTok', handle: '@escape_1_', url: 'https://www.tiktok.com/@escape_1_' },
 ];
