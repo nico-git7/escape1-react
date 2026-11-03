@@ -138,6 +138,10 @@ section { position: relative; padding: clamp(4.5rem, 9vw, 7rem) 0; }
 .service-link { display: inline-flex; align-items: center; gap: .4rem; margin-top: auto; padding: .3rem 0; border: 0; background: transparent; color: var(--accent-bright); font-family: var(--mono); font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; transition: color .2s var(--ease), gap .2s var(--ease); }
 .service-link .icon { width: 1rem; height: 1rem; }
 .service-link:hover { gap: .7rem; color: var(--text); }
+/* Botón "Consultar servicio" y link "Ver más" (va por encima del área clickeable del botón) */
+.service-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem 1.4rem; }
+.service-more { position: relative; z-index: 1; padding: .3rem 0; border-bottom: 1px solid rgba(255,255,255,.28); color: var(--soft); font-family: var(--mono); font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; transition: color .2s var(--ease), border-color .2s var(--ease); }
+.service-more:hover { border-color: var(--accent-bright); color: var(--text); }
 
 /* ---------- Proceso ---------- */
 /* Línea que conecta los pasos (solo escritorio) */
@@ -247,6 +251,23 @@ section { position: relative; padding: clamp(4.5rem, 9vw, 7rem) 0; }
 .info-list .icon { grid-row: 1 / span 2; margin-top: .1rem; color: var(--accent); }
 .info-list strong { color: var(--accent-bright); font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
 
+/* ---------- Preguntas frecuentes (home y fichas) ---------- */
+.faq-layout { display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: clamp(2rem,6vw,5rem); align-items: start; }
+.faq-intro { position: sticky; top: calc(var(--header-h) + 2rem); }
+.faq-intro .section-sub { margin-bottom: 1.6rem; }
+.faq-list { border-top: 1px solid var(--line); }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; padding: 1.25rem 0; color: var(--text); font-size: 1.05rem; font-weight: 600; line-height: 1.35; cursor: pointer; list-style: none; transition: color .2s var(--ease); }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { color: var(--accent-bright); }
+/* Signo + que pasa a - cuando la pregunta está abierta */
+.faq-icon { position: relative; flex: none; width: 30px; height: 30px; border: 1px solid var(--line-strong); border-radius: 50%; transition: border-color .2s var(--ease), background .2s var(--ease); }
+.faq-icon::before, .faq-icon::after { position: absolute; top: 50%; left: 50%; width: 11px; height: 2px; margin: -1px 0 0 -5.5px; border-radius: 2px; content: ""; background: var(--accent-bright); transition: transform .25s var(--ease); }
+.faq-icon::after { transform: rotate(90deg); }
+.faq-item[open] .faq-icon { border-color: var(--accent); background: var(--accent-soft); }
+.faq-item[open] .faq-icon::after { transform: rotate(0deg); }
+.faq-item p { max-width: 64ch; margin: 0; padding: 0 3rem 1.4rem 0; color: var(--soft); }
+
 /* ---------- Ubicación ---------- */
 .map-frame { min-height: 380px; overflow: hidden; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
 .map-frame iframe { display: block; width: 100%; height: 100%; min-height: 380px; border: 0; filter: grayscale(.25) contrast(1.04); }
@@ -277,6 +298,8 @@ section { position: relative; padding: clamp(4.5rem, 9vw, 7rem) 0; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 980px) {
+  .faq-layout { grid-template-columns: 1fr; }
+  .faq-intro { position: static; }
   .contact-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .services-mosaic { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .service-tile.is-large { min-height: 340px; }
@@ -335,6 +358,7 @@ section { position: relative; padding: clamp(4.5rem, 9vw, 7rem) 0; }
   .cat-tile:last-child { grid-column: 1 / -1; }
   .cat-label .icon { opacity: 1; transform: none; }
   .form-grid { grid-template-columns: 1fr; }
+  .faq-item p { padding-right: 0; }
   .field.full { grid-column: auto; }
   .submit-row .btn { width: 100%; }
 }

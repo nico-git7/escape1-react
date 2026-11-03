@@ -11,7 +11,15 @@ const METRICS = [
 
 const Hero = () => (
   <section className="hero photo-section" id="inicio">
-    <img className="ps-bg hero-bg" src="/img/galeria/fondo.webp" alt="" fetchPriority="high" />
+    {/* En celulares se baja la versión de 800 px (pesa un tercio) */}
+    <img
+      className="ps-bg hero-bg"
+      src="/img/galeria/fondo.webp"
+      srcSet="/img/galeria/fondo-800.webp 800w, /img/galeria/fondo.webp 1536w"
+      sizes="100vw"
+      alt=""
+      fetchPriority="high"
+    />
     <div className="wrap hero-layout">
       <div>
         {/* El rótulo va dentro del h1 para que el título principal de la página diga

@@ -4,6 +4,7 @@ import ServicesProcess from './sections/ServicesProcess';
 import Gallery from './sections/Gallery';
 import Catalog from './sections/Catalog';
 import BudgetForm from './sections/BudgetForm';
+import Faq from './sections/Faq';
 import LocationContact from './sections/LocationContact';
 
 // preset / onRequestBudget vienen de App: el presupuesto se precarga al tocar
@@ -27,6 +28,7 @@ const MainHome = ({ preset, onRequestBudget }) => {
       <Gallery />
       <Catalog />
       <BudgetForm preset={preset} />
+      <Faq />
       <LocationContact />
     </main>
   );

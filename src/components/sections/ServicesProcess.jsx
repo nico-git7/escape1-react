@@ -1,5 +1,7 @@
 import Icon from '../Icon';
 import SERVICES from '../../data/services';
+import { rememberHomeScroll } from '../../utils/scrollMemory';
+import { catalogPath } from '../../utils/useRoute';
 
 // `when` marca el orden de cada paso; `image` es una foto de /public/img/proceso
 const PROCESS_STEPS = [
@@ -30,10 +32,17 @@ const ServicesProcess = ({ onSelectService }) => (
               <div className="service-tile-body">
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
-                <button className="service-link" type="button" onClick={() => onSelectService(service.service)}>
-                  Consultar servicio
-                  <Icon name="arrow" />
-                </button>
+                <div className="service-actions">
+                  <button className="service-link" type="button" onClick={() => onSelectService(service.service)}>
+                    Consultar servicio
+                    <Icon name="arrow" />
+                  </button>
+                  {service.page && (
+                    <a className="service-more" href={catalogPath(service.page)} onClick={rememberHomeScroll}>
+                      Ver más<span className="sr-only"> sobre {service.title.toLowerCase()}</span>
+                    </a>
+                  )}
+                </div>
               </div>
             </article>
           ))}

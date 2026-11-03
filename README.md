@@ -9,7 +9,8 @@ Sitio web para **Escape1**, un taller de escapes para autos, camionetas y motos 
 ## Funcionalidades
 
 - **Catálogo con fichas de producto:** cada categoría tiene su propia página (`/catalogo/<producto>`) con visor de fotos, miniaturas y navegación con flechas del teclado.
-- **Posicionamiento en Google (SEO):** cada página se genera como HTML estático en el build, con título, descripción y link canónico propios. Incluye datos estructurados del taller (schema.org `AutoRepair`: dirección, horario, teléfono, servicios), `sitemap.xml`, `robots.txt` e imágenes para que el link se vea bien al compartirlo por WhatsApp o redes.
+- **Posicionamiento en Google (SEO):** cada página se genera como HTML estático en el build, con título, descripción y link canónico propios. Cada servicio tiene su página con texto propio y preguntas frecuentes, y la home tiene una sección de preguntas frecuentes. Incluye datos estructurados (schema.org `AutoRepair`, `Service`, `FAQPage` y `BreadcrumbList`), `sitemap.xml` con imágenes, `robots.txt`, página 404 propia e imágenes para que el link se vea bien al compartirlo por WhatsApp o redes.
+- **Rendimiento:** fuentes servidas desde el propio sitio (con preload de las que se ven primero), fotos en `.webp`, miniaturas para las grillas, imagen de portada más liviana en celulares y caché del navegador configurada en `.htaccess`.
 - **Presupuestos y turnos por WhatsApp:** los formularios validan los datos y arman un mensaje prolijo que se abre directo en WhatsApp, el canal principal del taller con sus clientes. Desde un servicio o un producto, el formulario se precarga solo.
 - **Galería de trabajos:** fotos y videos por categoría (autos, camionetas y motos). Los videos se reproducen solos solo mientras están en pantalla, para ahorrar datos y batería, y se abren en un visor navegable.
 - **Diseño responsive:** pensado primero para el celular, desde 360 px hasta pantallas grandes.
@@ -56,8 +57,10 @@ Abrí `http://localhost:5173`.
 ## Estructura
 
 ```
+public/
+└── .htaccess                # Hostinger: URLs limpias, redirecciones, página 404 y caché
 scripts/
-└── prerender.js             # Después del build: HTML de cada página, sitemap y robots
+└── prerender.js             # Después del build: HTML de cada página, 404, sitemap y robots
 src/
 ├── App.jsx                  # Layout general y router (home / ficha de producto)
 ├── main.jsx                 # Arranque en el navegador (hidrata el HTML generado)
@@ -68,14 +71,17 @@ src/
 │   ├── Footer.jsx
 │   ├── Lightbox.jsx         # Visor de fotos y videos de la galería
 │   ├── IconSprite.jsx       # Íconos SVG reutilizables
+│   ├── FaqList.jsx          # Preguntas frecuentes desplegables (home y fichas)
 │   ├── MainHome.jsx         # Arma la home con todas las secciones
-│   └── sections/            # Hero, Servicios, Galería, Catálogo, Formularios, Contacto…
+│   └── sections/            # Hero, Servicios, Galería, Catálogo, Preguntas, Contacto…
 ├── pages/
-│   └── CatalogDetail.jsx    # Ficha de cada producto del catálogo
+│   ├── CatalogDetail.jsx    # Ficha de cada producto o servicio (texto, preguntas, relacionados)
+│   └── NotFound.jsx         # Página 404
 ├── data/
 │   ├── site.js              # Datos del negocio: teléfono, dirección, horario, redes, URL del sitio
-│   ├── catalog.js           # Productos del catálogo (fotos, textos, servicio asociado)
-│   ├── services.js          # Servicios del taller
+│   ├── catalog.js           # Fichas: fotos, textos, preguntas frecuentes, servicio asociado
+│   ├── services.js          # Servicios del taller (cada uno enlaza a su ficha)
+│   ├── faq.js               # Preguntas frecuentes de la home
 │   ├── gallery.js           # Fotos y videos de la galería
 │   └── nav.js               # Links del menú
 └── utils/
@@ -89,10 +95,22 @@ src/
 
 El contenido está separado del código, así que no hace falta tocar componentes:
 
-- **Agregar un producto o cambiar sus fotos:** editar `src/data/catalog.js`. La página nueva, su título para Google y su entrada en el sitemap se generan solas en el build. Si querés una imagen propia para cuando se comparte el link, agregá una de 1200 × 630 en `public/img/compartir/` y ponela en `shareImage`.
+- **Agregar un producto o servicio, o cambiar sus fotos:** editar `src/data/catalog.js`. La página nueva, su título para Google y su entrada en el sitemap se generan solas en el build. Para que posicione, conviene completar `content` (2 o 3 párrafos propios), `includes` y `faqs` con las palabras que usa la gente para buscar ("caño de escape", "silenciador", "tacho"…). Opcionales: `thumb` (miniatura cuadrada de 480 px en `public/img/miniaturas/`) y `shareImage` (imagen de 1200 × 630 en `public/img/compartir/` para cuando se comparte el link).
+- **Cambiar las preguntas frecuentes de la home:** `src/data/faq.js`.
 - **Sumar fotos o videos a la galería:** subir el archivo a `public/img/galeria/` o `public/video/galeria/` y agregarlo en `src/data/gallery.js`. Conviene subir las fotos en `.webp` y de no más de 1600 px de lado: las fotos del celular pesan varios MB y hacen lenta la página.
 - **Cambiar el teléfono, la dirección, el horario o las redes:** `src/data/site.js` (también actualiza los datos que lee Google).
-- **Publicar cambios:** `npm run build` y subir todo el contenido de `dist/` a `public_html` en Hostinger, incluido el archivo oculto `.htaccess`.
+- **Publicar cambios:** Hostinger publica solo lo que hay en la rama `deploy` (implementación automática desde GitHub). Hay que generar el build y poner el contenido de `dist/` en esa rama:
+
+  ```bash
+  npm run build
+  git worktree add ../escape1-deploy deploy   # solo la primera vez
+  cd ../escape1-deploy
+  git pull
+  git rm -rq . && cp -a ../escape1-react/dist/. .
+  git add -A && git commit -m "Deploy" && git push
+  ```
+
+  `dist/` incluye el archivo oculto `.htaccess`: tiene que estar sí o sí.
 - **Si el sitio se muda a otro dominio:** cambiar `SITE_URL` en `src/data/site.js`.
 
 ## Créditos
