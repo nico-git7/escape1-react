@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import Icon from '../components/Icon';
+import FaqList from '../components/FaqList';
 import catalogItems from '../data/catalog';
 import { openedFromHome } from '../utils/scrollMemory';
+import { catalogPath } from '../utils/useRoute';
 import { whatsAppLink } from '../utils/whatsapp';
 import './CatalogDetail.css';
 
@@ -20,6 +22,15 @@ const BackLink = () => (
     Volver al catálogo
   </a>
 );
+
+// Otras fichas para seguir mirando: las 4 que siguen en el orden del catálogo
+// (dando la vuelta al llegar al final), así todas reciben links de otras páginas.
+const relatedItems = (slug, count = 4) => {
+  const index = catalogItems.findIndex((entry) => entry.slug === slug);
+  return Array.from({ length: Math.min(count, catalogItems.length - 1) }, (_, i) => (
+    catalogItems[(index + 1 + i) % catalogItems.length]
+  ));
+};
 
 const CatalogDetail = ({ slug }) => {
   // Producto de data/catalog.js (o undefined si el slug no existe)
@@ -51,6 +62,9 @@ const CatalogDetail = ({ slug }) => {
     );
   }
 
+  const name = item.seoTitle || item.title;
+  const hasMore = Boolean(item.content || item.includes || item.faqs);
+
   return (
     <main id="contenido" className="detail-page">
       <div className="wrap">
@@ -61,7 +75,8 @@ const CatalogDetail = ({ slug }) => {
               <img
                 key={item.photos[current] + current}
                 src={item.photos[current]}
-                alt={`${item.title} — foto ${current + 1} de ${total}`}
+                alt={`${name} en Escape1, foto ${current + 1} de ${total}`}
+                fetchPriority={current === 0 ? 'high' : undefined}
               />
               {total > 1 && (
                 <>
@@ -81,15 +96,16 @@ const CatalogDetail = ({ slug }) => {
                   aria-current={index === current}
                   onClick={() => setCurrent(index)}
                 >
-                  <img src={photo} alt="" loading="lazy" />
+                  {/* Prioridad baja: primero tiene que cargar la foto grande */}
+                  <img src={photo} alt="" loading="lazy" decoding="async" fetchPriority="low" />
                 </button>
               ))}
             </div>
           </div>
 
           <aside className="detail-info" data-reveal="2">
-            <p className="eyebrow">Catálogo</p>
-            <h1 className="section-title">{item.title}</h1>
+            <p className="eyebrow">{item.eyebrow || 'Catálogo'}</p>
+            <h1 className="section-title">{name}</h1>
             <div className="rule" />
             <p>{item.description}</p>
             <div className="detail-actions">
@@ -106,6 +122,52 @@ const CatalogDetail = ({ slug }) => {
             </div>
           </aside>
         </div>
+
+        {hasMore && (
+          <div className="detail-more">
+            {(item.content || item.includes) && (
+              <div className="detail-article" data-reveal>
+                <p className="eyebrow">Escape1 · San Miguel de Tucumán</p>
+                <h2 className="detail-subtitle">Qué hacemos</h2>
+                {item.content?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                {item.includes && (
+                  <ul className="detail-list">
+                    {item.includes.map((entry) => (
+                      <li key={entry}>
+                        <Icon name="check" />
+                        {entry}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
+            {item.faqs && (
+              <div className="detail-faq" data-reveal="2">
+                <p className="eyebrow">Consultas</p>
+                <h2 className="detail-subtitle">Preguntas frecuentes</h2>
+                <FaqList items={item.faqs} />
+              </div>
+            )}
+          </div>
+        )}
+
+        <section className="detail-related" aria-labelledby="otros-servicios">
+          <div data-reveal>
+            <p className="eyebrow">Más del taller</p>
+            <h2 className="detail-subtitle" id="otros-servicios">Otros servicios y productos</h2>
+          </div>
+          <div className="related-grid">
+            {relatedItems(item.slug).map((entry, index) => (
+              <a className="cat-thumb" href={catalogPath(entry.slug)} key={entry.slug} data-reveal={index + 1}>
+                <div className="cat-thumb-media">
+                  <img src={entry.thumb || entry.image} alt={entry.alt} loading="lazy" />
+                </div>
+                <h3>{entry.seoTitle || entry.title}</h3>
+              </a>
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   );

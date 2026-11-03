@@ -20,6 +20,7 @@ const Footer = () => (
             <li key={item.href}><a href={`/${item.href}`}>{item.label}</a></li>
           ))}
           <li><a href="/#presupuesto">Presupuesto</a></li>
+          <li><a href="/#preguntas">Preguntas frecuentes</a></li>
         </ul>
       </nav>
 

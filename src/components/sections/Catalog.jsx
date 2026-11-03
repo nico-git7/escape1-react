@@ -6,7 +6,8 @@ import { whatsAppLink } from '../../utils/whatsapp';
 
 const ASK_URL = whatsAppLink(['Hola, quiero consultar por un producto que no está en el catálogo de la web.']);
 
-const [featured, ...rest] = catalogItems;
+// Las fichas con `showInCatalog: false` (servicios) no van en esta grilla
+const [featured, ...rest] = catalogItems.filter((item) => item.showInCatalog !== false);
 
 const Catalog = () => (
   <section className="bg-soft" id="catalogo">
@@ -52,7 +53,7 @@ const Catalog = () => (
               data-reveal={(index % 3) + 1}
             >
               <div className="cat-thumb-media">
-                <img src={item.image} alt={item.alt} loading="lazy" />
+                <img src={item.thumb || item.image} alt={item.alt} loading="lazy" />
               </div>
               <h3>{item.title}</h3>
               <span className="cat-count">{item.photos.length} fotos</span>

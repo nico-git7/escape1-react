@@ -4,7 +4,27 @@
 Options -MultiViews
 RewriteEngine On
 
-# /catalogo/motos/ -> /catalogo/motos (una sola dirección por página para Google)
+# Página propia para las direcciones que no existen (la genera el build)
+ErrorDocument 404 /404.html
+
+# ---------- Una sola dirección por página (para Google) ----------
+
+# www.tallerescape1.com -> tallerescape1.com
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+# /index.html -> /
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^ / [L,R=301]
+
+# /catalogo/motos.html -> /catalogo/motos
+RewriteCond %{THE_REQUEST} \s/+(catalogo/[^\s?]+?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [L,R=301]
+
+# /catalogo o /catalogo/ (no es una página) -> sección Catálogo de la home
+RewriteRule ^catalogo/?$ /#catalogo [NE,L,R=301]
+
+# /catalogo/motos/ -> /catalogo/motos
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)/$ /$1 [L,R=301]
 
@@ -12,3 +32,19 @@ RewriteRule ^(.+)/$ /$1 [L,R=301]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.+)$ $1.html [L]
+
+# ---------- Caché del navegador (la página carga más rápido al volver) ----------
+<IfModule mod_headers.c>
+  # JS, CSS y fuentes del build: el nombre cambia en cada build, se guardan un año
+  <FilesMatch "-[A-Za-z0-9_-]{8}\.(js|css|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # Fotos y videos: 30 días (si cambiás una foto, subila con otro nombre)
+  <FilesMatch "\.(webp|jpe?g|png|PNG|svg|ico|mp4|MP4)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  # Páginas, sitemap y robots: siempre se revisa si hay una versión nueva
+  <FilesMatch "\.(html|xml|txt)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>

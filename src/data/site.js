@@ -27,3 +27,6 @@ export const SOCIALS = [
   { id: 'instagram', label: 'Instagram', handle: '@escape1_2025', url: 'https://www.instagram.com/escape1_2025' },
   { id: 'tiktok', label: 'TikTok', handle: '@escape_1_', url: 'https://www.tiktok.com/@escape_1_' },
 ];
+
+// Medios de pago (los muestra Google; en la web están en BudgetForm.jsx)
+export const PAYMENT_METHODS = ['Efectivo', 'Transferencia', 'Tarjeta de crédito', 'Tarjeta de débito'];

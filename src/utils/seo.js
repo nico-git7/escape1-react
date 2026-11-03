@@ -10,28 +10,34 @@
 // del negocio o se agrega un producto, esto se actualiza solo.
 
 import catalogItems from '../data/catalog';
-import SERVICES from '../data/services';
-import { ADDRESS, CITY, HOURS, MAPS_URL, SITE_URL, SOCIALS, WHATSAPP_NUMBER } from '../data/site';
+import HOME_FAQS from '../data/faq';
+import { ADDRESS, CITY, HOURS, MAPS_URL, PAYMENT_METHODS, SITE_URL, SOCIALS, WHATSAPP_NUMBER } from '../data/site';
 import { catalogPath } from './useRoute';
 
 const BUSINESS_NAME = 'Escape1';
+// Otras formas en que la gente escribe o conoce el nombre del taller (el logo dice
+// "Escape1 Repro-Chip"). Ayudan a que Google relacione esas búsquedas con el sitio.
+const ALTERNATE_NAMES = ['Escape 1', 'Escape1 Repro-Chip', 'Taller Escape1'];
 const LOGO = '/img/logo-soldador.webp';
 // Las imágenes para compartir miden 1200 × 630 (el formato que usan WhatsApp y Facebook)
 const DEFAULT_SHARE_IMAGE = '/img/compartir/escape1.jpg';
+// Fotos del taller para Google: frente del local y adentro
+const BUSINESS_PHOTOS = ['/img/proceso/paso-1-frente.webp', '/img/nosotros-taller.webp', DEFAULT_SHARE_IMAGE];
 
 const HOME = {
-  title: 'Taller de escapes en Tucumán | Escape1',
+  title: 'Taller de escapes y silenciadores en Tucumán | Escape1',
   description:
-    'Escapes originales y deportivos, silenciadores, catalizadores, downpipe y fabricación a medida en acero inoxidable para autos, camionetas y motos en San Miguel de Tucumán.',
+    'Escapes originales y deportivos, silenciadores, catalizadores, enganches y fabricación a medida en acero inoxidable en San Miguel de Tucumán. Presupuesto sin cargo.',
 };
 
 const absoluteUrl = (path) => `${SITE_URL}${path}`;
 const BUSINESS_ID = absoluteUrl('/#taller');
+const TUCUMAN = { '@type': 'State', name: 'Tucumán' };
 
 // "9:00" -> "09:00"
 const time = (value) => value.padStart(5, '0');
 
-// Todas las páginas del sitio (las usan el build y el sitemap)
+// Todas las páginas del sitio que van a Google (las usan el build y el sitemap)
 export const PAGE_PATHS = ['/', ...catalogItems.map((item) => catalogPath(item.slug))];
 
 // ---------- Datos estructurados (schema.org) ----------
@@ -40,10 +46,11 @@ const businessSchema = {
   '@type': 'AutoRepair',
   '@id': BUSINESS_ID,
   name: BUSINESS_NAME,
+  alternateName: ALTERNATE_NAMES,
   description: HOME.description,
   url: absoluteUrl('/'),
   logo: absoluteUrl(LOGO),
-  image: [absoluteUrl(DEFAULT_SHARE_IMAGE), absoluteUrl('/img/nosotros-taller.webp')],
+  image: BUSINESS_PHOTOS.map(absoluteUrl),
   telephone: `+${WHATSAPP_NUMBER}`,
   address: {
     '@type': 'PostalAddress',
@@ -53,7 +60,7 @@ const businessSchema = {
     addressCountry: 'AR',
   },
   hasMap: MAPS_URL,
-  areaServed: { '@type': 'State', name: 'Tucumán' },
+  areaServed: TUCUMAN,
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
@@ -62,13 +69,21 @@ const businessSchema = {
       closes: time(HOURS.close),
     },
   ],
+  paymentAccepted: PAYMENT_METHODS.join(', '),
+  currenciesAccepted: 'ARS',
   sameAs: SOCIALS.map((social) => social.url),
+  // Todas las fichas del catálogo, cada una con su página
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'Servicios del taller',
-    itemListElement: SERVICES.map((service) => ({
+    name: 'Servicios y productos del taller',
+    itemListElement: catalogItems.map((item) => ({
       '@type': 'Offer',
-      itemOffered: { '@type': 'Service', name: service.title, description: service.text },
+      itemOffered: {
+        '@type': 'Service',
+        name: item.seoTitle || item.title,
+        description: item.description,
+        url: absoluteUrl(catalogPath(item.slug)),
+      },
     })),
   },
 };
@@ -77,58 +92,71 @@ const websiteSchema = {
   '@type': 'WebSite',
   '@id': absoluteUrl('/#sitio'),
   name: BUSINESS_NAME,
+  alternateName: ALTERNATE_NAMES,
   url: absoluteUrl('/'),
   inLanguage: 'es-AR',
   publisher: { '@id': BUSINESS_ID },
 };
+
+// Preguntas frecuentes que se ven en la página
+const faqSchema = (faqs) => ({
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: { '@type': 'Answer', text: faq.a },
+  })),
+});
 
 const catalogItemSchemas = (item, name, url) => [
   {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Inicio', item: absoluteUrl('/') },
-      { '@type': 'ListItem', position: 2, name: item.title, item: url },
+      { '@type': 'ListItem', position: 2, name, item: url },
     ],
   },
   {
     '@type': 'Service',
     '@id': `${url}#servicio`,
     name,
+    serviceType: item.title,
     description: item.description,
     url,
     image: item.photos.map(absoluteUrl),
     provider: { '@id': BUSINESS_ID },
-    areaServed: { '@type': 'State', name: 'Tucumán' },
+    areaServed: TUCUMAN,
   },
+  ...(item.faqs ? [faqSchema(item.faqs)] : []),
 ];
 
 // ---------- Datos de cada página ----------
 
-// `slug`: el de la ficha del catálogo, o null para la home
-export function getPageMeta(slug = null) {
-  if (!slug) {
+const notFoundMeta = (path) => ({
+  title: `Página no encontrada | ${BUSINESS_NAME}`,
+  description: HOME.description,
+  path,
+  robots: 'noindex',
+  image: DEFAULT_SHARE_IMAGE,
+  imageAlt: BUSINESS_NAME,
+  schema: [businessSchema],
+});
+
+// `page` y `slug`: los de la ruta actual (ver utils/useRoute.js)
+export function getPageMeta(page = 'home', slug = null) {
+  if (page === 'home') {
     return {
       ...HOME,
       path: '/',
       robots: 'index, follow, max-image-preview:large',
       image: DEFAULT_SHARE_IMAGE,
       imageAlt: 'Escape1, taller de escapes en San Miguel de Tucumán',
-      schema: [businessSchema, websiteSchema],
+      schema: [businessSchema, websiteSchema, faqSchema(HOME_FAQS)],
     };
   }
 
-  const item = catalogItems.find((entry) => entry.slug === slug);
-  if (!item) {
-    return {
-      title: `Producto no encontrado | ${BUSINESS_NAME}`,
-      description: HOME.description,
-      path: catalogPath(slug),
-      robots: 'noindex',
-      image: DEFAULT_SHARE_IMAGE,
-      imageAlt: BUSINESS_NAME,
-      schema: [businessSchema],
-    };
-  }
+  const item = page === 'catalog-item' && catalogItems.find((entry) => entry.slug === slug);
+  if (!item) return notFoundMeta(page === 'catalog-item' ? catalogPath(slug) : '/404');
 
   // `seoTitle` (opcional en catalog.js): nombre más descriptivo para Google
   const name = item.seoTitle || item.title;
@@ -189,16 +217,24 @@ export function renderHead(meta) {
   ].join('\n    ');
 }
 
+// Fotos de cada página: van al sitemap para que Google las muestre en Imágenes
+const pageImages = (path) => {
+  if (path === '/') return BUSINESS_PHOTOS;
+  const item = catalogItems.find((entry) => catalogPath(entry.slug) === path);
+  return item ? item.photos : [];
+};
+
 export function renderSitemap(lastModified) {
   const urls = PAGE_PATHS.map((path) => [
     '  <url>',
     `    <loc>${absoluteUrl(path)}</loc>`,
     `    <lastmod>${lastModified}</lastmod>`,
+    ...pageImages(path).map((image) => `    <image:image><image:loc>${absoluteUrl(image)}</image:loc></image:image>`),
     '  </url>',
   ].join('\n'));
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">',
     ...urls,
     '</urlset>',
     '',

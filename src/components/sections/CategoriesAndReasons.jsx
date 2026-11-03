@@ -1,4 +1,6 @@
 import Icon from '../Icon';
+import { rememberHomeScroll } from '../../utils/scrollMemory';
+import { catalogPath } from '../../utils/useRoute';
 
 const MARQUEE_WORDS = [
   'Escapes originales',
@@ -10,13 +12,14 @@ const MARQUEE_WORDS = [
   'Autos, camionetas y motos',
 ];
 
+// `href`: página de la ficha (o una sección de la home, si empieza con #)
 // `position` (opcional): qué parte de la foto queda a la vista cuando el recuadro la recorta
 const CATEGORY_TILES = [
-  { href: '#servicios', image: '/img/categorias/originales.webp', alt: 'Silenciador original junto a un Peugeot 206', label: 'Escapes originales' },
-  { href: '#servicios', image: '/img/categorias/deportiva.webp', alt: 'Silenciador deportivo SilenPro de acero colocado en un auto', label: 'Línea deportiva', position: 'right center' },
-  { href: '#catalogo', image: '/img/categorias/camionetas.webp', alt: 'Camioneta en el taller', label: 'Autos y camionetas' },
-  { href: '#servicios', image: '/img/stock/cat-catalizadores.jpg', alt: 'Catalizador', label: 'Catalizadores' },
-  { href: '#catalogo', image: '/img/categorias/accesorios.webp', alt: 'Enganches colgados en la pared del taller', label: 'Accesorios' },
+  { href: catalogPath('escapes-originales'), image: '/img/categorias/originales.webp', alt: 'Silenciador original junto a un Peugeot 206', label: 'Escapes originales' },
+  { href: catalogPath('escapes-deportivos'), image: '/img/categorias/deportiva.webp', alt: 'Silenciador deportivo SilenPro de acero colocado en un auto', label: 'Línea deportiva', position: 'right center' },
+  { href: '#catalogo', image: '/img/categorias/camionetas.webp', alt: 'Toyota Hilux en el taller', label: 'Autos y camionetas' },
+  { href: catalogPath('catalizadores'), image: '/img/stock/cat-catalizadores.jpg', alt: 'Catalizadores de escape', label: 'Catalizadores' },
+  { href: catalogPath('enganches'), image: '/img/categorias/accesorios.webp', alt: 'Enganches colgados en la pared del taller', label: 'Accesorios' },
 ];
 
 const REASONS = [
@@ -45,7 +48,12 @@ const CategoriesAndReasons = () => (
 
     <section className="cat-strip" aria-label="Categorías principales">
       {CATEGORY_TILES.map((tile, index) => (
-        <a className="cat-tile" href={tile.href} key={tile.label}>
+        <a
+          className="cat-tile"
+          href={tile.href}
+          key={tile.label}
+          onClick={tile.href.startsWith('/') ? rememberHomeScroll : undefined}
+        >
           <img
             className="cat-tile-photo"
             src={tile.image}

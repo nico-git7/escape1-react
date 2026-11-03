@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 // Router mínimo con URLs reales (History API). Cada ficha del catálogo tiene su
 // propia dirección, así Google la puede indexar como una página aparte:
 //
+//   /                             ->  { page: 'home' }
 //   /catalogo/escapes-originales  ->  { page: 'catalog-item', slug: 'escapes-originales' }
-//   cualquier otra ruta           ->  { page: 'home' }
+//   cualquier otra ruta           ->  { page: 'not-found' }
 //
 // Las secciones de la home siguen siendo anchors (#servicios, #presupuesto…).
 // Desde una ficha se enlazan como "/#servicios".
@@ -12,8 +13,11 @@ import { useEffect, useState } from 'react';
 export const catalogPath = (slug) => `/catalogo/${slug}`;
 
 export const parsePath = (pathname) => {
-  const match = pathname.match(/^\/catalogo\/([\w-]+)\/?$/);
-  return match ? { page: 'catalog-item', slug: match[1] } : { page: 'home', slug: null };
+  // Acepta las variantes de una misma dirección: "/index.html", ".html" y "/" al final
+  const path = pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '').replace(/(.)\/$/, '$1');
+  if (path === '/' || path === '') return { page: 'home', slug: null };
+  const match = path.match(/^\/catalogo\/([\w-]+)$/);
+  return match ? { page: 'catalog-item', slug: match[1] } : { page: 'not-found', slug: null };
 };
 
 // Links viejos del router con hash (#/catalogo/<slug>), que pueden estar compartidos
