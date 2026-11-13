@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Icon from '../components/Icon';
 import FaqList from '../components/FaqList';
 import catalogItems from '../data/catalog';
+import { ADDRESS, CITY } from '../data/site';
 import { openedFromHome } from '../utils/scrollMemory';
 import { catalogPath } from '../utils/useRoute';
 import { whatsAppLink } from '../utils/whatsapp';
@@ -140,6 +141,12 @@ const CatalogDetail = ({ slug }) => {
                     ))}
                   </ul>
                 )}
+                {/* Link a la home con las palabras que busca la gente: le indica a Google
+                    que la home es la página principal del taller */}
+                <p>
+                  Somos un <a href="/">taller de escapes en Tucumán</a>: trabajamos todo el
+                  sistema de escape en {ADDRESS}, {CITY}.
+                </p>
               </div>
             )}
             {item.faqs && (

@@ -4,10 +4,11 @@ import { rememberHomeScroll } from '../../utils/scrollMemory';
 import { catalogPath } from '../../utils/useRoute';
 
 // `when` marca el orden de cada paso; `image` es una foto de /public/img/proceso
+// `alt`: qué muestra la foto (lo leen Google Imágenes y los lectores de pantalla)
 const PROCESS_STEPS = [
-  { when: 'Primero', image: 'paso-1-silenciadores', title: 'Contanos qué necesitás', text: 'Mandanos marca, modelo, año y una descripción de lo que querés resolver.' },
-  { when: 'Después', image: 'paso-2-camioneta', title: 'Revisamos tu vehículo', text: 'Evaluamos el trabajo y te explicamos las opciones antes de avanzar.' },
-  { when: 'Por último', image: 'paso-3-colocado', title: 'Coordinamos el trabajo', text: 'Definimos turno, materiales y alcance para que tengas claridad en cada etapa.' },
+  { when: 'Primero', image: 'paso-1-silenciadores', alt: 'Silenciadores en el taller de escapes Escape1, Tucumán', title: 'Contanos qué necesitás', text: 'Mandanos marca, modelo, año y una descripción de lo que querés resolver.' },
+  { when: 'Después', image: 'paso-2-camioneta', alt: 'Camioneta en revisión del sistema de escape en Escape1', title: 'Revisamos tu vehículo', text: 'Evaluamos el trabajo y te explicamos las opciones antes de avanzar.' },
+  { when: 'Por último', image: 'paso-3-colocado', alt: 'Escape colocado en el taller Escape1, San Miguel de Tucumán', title: 'Coordinamos el trabajo', text: 'Definimos turno, materiales y alcance para que tengas claridad en cada etapa.' },
 ];
 
 // onSelectService(nombreServicio) hace scroll al presupuesto y precarga el select
@@ -19,7 +20,7 @@ const ServicesProcess = ({ onSelectService }) => (
         <div className="section-head" data-reveal>
           <div>
             <p className="eyebrow">Servicios del taller</p>
-            <h2 className="section-title">De mantenimiento a preparación</h2>
+            <h2 className="section-title">Escapes: de mantenimiento a preparación</h2>
             <div className="rule" />
           </div>
           <p className="section-sub">Trabajamos sobre todo el sistema de escape: reemplazo, reparación, adaptación y fabricación personalizada.</p>
@@ -62,7 +63,7 @@ const ServicesProcess = ({ onSelectService }) => (
         <ol className="process-panels">
           {PROCESS_STEPS.map((step, index) => (
             <li className="process-panel" key={step.title} data-reveal={index + 1}>
-              <img src={`/img/proceso/${step.image}.webp`} alt="" loading="lazy" />
+              <img src={`/img/proceso/${step.image}.webp`} alt={step.alt} loading="lazy" />
               <div className="process-body">
                 <p className="process-when">{step.when}</p>
                 <h3>{step.title}</h3>

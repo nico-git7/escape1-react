@@ -11,7 +11,9 @@
 
 import catalogItems from '../data/catalog';
 import HOME_FAQS from '../data/faq';
-import { ADDRESS, CITY, HOURS, MAPS_URL, PAYMENT_METHODS, SITE_URL, SOCIALS, WHATSAPP_NUMBER } from '../data/site';
+import {
+  ADDRESS, CITY, GEO, POSTAL_CODE, GOOGLE_PROFILE_URL, HOURS, MAPS_URL, PAYMENT_METHODS, SITE_URL, SOCIALS, WHATSAPP_NUMBER,
+} from '../data/site';
 import { catalogPath } from './useRoute';
 
 const BUSINESS_NAME = 'Escape1';
@@ -55,12 +57,19 @@ const businessSchema = {
   address: {
     '@type': 'PostalAddress',
     streetAddress: ADDRESS,
+    postalCode: POSTAL_CODE,
     addressLocality: CITY,
     addressRegion: 'Tucumán',
     addressCountry: 'AR',
   },
-  hasMap: MAPS_URL,
-  areaServed: TUCUMAN,
+  ...(GEO ? { geo: { '@type': 'GeoCoordinates', latitude: GEO.lat, longitude: GEO.lng } } : {}),
+  hasMap: GOOGLE_PROFILE_URL || MAPS_URL,
+  // La ciudad y los alrededores desde donde viene la gente (ver data/faq.js)
+  areaServed: [
+    TUCUMAN,
+    ...['San Miguel de Tucumán', 'Yerba Buena', 'Tafí Viejo', 'Banda del Río Salí', 'Alderetes']
+      .map((name) => ({ '@type': 'City', name })),
+  ],
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
@@ -71,7 +80,7 @@ const businessSchema = {
   ],
   paymentAccepted: PAYMENT_METHODS.join(', '),
   currenciesAccepted: 'ARS',
-  sameAs: SOCIALS.map((social) => social.url),
+  sameAs: [...(GOOGLE_PROFILE_URL ? [GOOGLE_PROFILE_URL] : []), ...SOCIALS.map((social) => social.url)],
   // Todas las fichas del catálogo, cada una con su página
   hasOfferCatalog: {
     '@type': 'OfferCatalog',

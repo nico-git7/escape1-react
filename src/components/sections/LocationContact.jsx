@@ -1,5 +1,5 @@
 import Icon from '../Icon';
-import { ADDRESS, CITY, DISPLAY_PHONE, HOURS, MAPS_URL, PHONE_URL, SOCIALS, WHATSAPP_URL } from '../../data/site';
+import { ADDRESS, CITY, DISPLAY_PHONE, GOOGLE_PROFILE_URL, HOURS, MAPS_URL, PHONE_URL, SOCIALS, WHATSAPP_URL } from '../../data/site';
 
 const CONTACT_CARDS = [
   { icon: 'whatsapp', title: 'WhatsApp', value: DISPLAY_PHONE, href: WHATSAPP_URL, external: true, featured: true },
@@ -14,7 +14,7 @@ const LocationContact = () => (
       <div className="wrap">
         <div data-reveal>
           <p className="eyebrow">Dónde encontrarnos</p>
-          <h2 className="section-title">Ubicación</h2>
+          <h2 className="section-title">Ubicación del taller en Tucumán</h2>
           <div className="rule" />
         </div>
         <div className="two-col">
@@ -36,7 +36,7 @@ const LocationContact = () => (
               <Icon name="clock" />
               <span><strong>{HOURS.days}</strong><br />{HOURS.open} a {HOURS.close}</span>
             </p>
-            <a className="btn btn-outline" href={MAPS_URL} target="_blank" rel="noopener">
+            <a className="btn btn-outline" href={GOOGLE_PROFILE_URL || MAPS_URL} target="_blank" rel="noopener">
               Cómo llegar
               <Icon name="arrow" />
             </a>
