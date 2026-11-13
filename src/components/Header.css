@@ -17,8 +17,6 @@
 .logo { display: inline-flex; align-items: baseline; flex: none; font-family: var(--display); font-size: 2rem; font-weight: 800; letter-spacing: .025em; line-height: 1; text-transform: uppercase; }
 .logo img { display: block; width: auto; height: calc(var(--header-h) - 14px); transition: height .3s var(--ease); }
 .site-header.is-scrolled .logo img { height: calc(var(--header-h) - 22px); }
-.logo .e1 { color: var(--text); }
-.logo .e2 { margin-left: .06em; color: var(--accent); text-shadow: 0 0 22px rgba(212,22,29,.45); }
 
 .nav-menu { display: flex; align-items: center; gap: clamp(1.25rem, 3vw, 2.25rem); margin-left: auto; }
 .nav-links { display: flex; align-items: center; gap: clamp(.9rem, 2vw, 1.75rem); margin: 0; padding: 0; list-style: none; }

@@ -4,19 +4,10 @@
 const IconSprite = () => (
   <svg style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }} aria-hidden="true">
     <defs>
-      <symbol id="icon-moto" viewBox="0 0 24 24"><path d="M4 18l6-12h4l-2 6h5l-9 9 2-7H4z" /></symbol>
-      <symbol id="icon-escape" viewBox="0 0 24 24"><path d="M3 12h14m-4-4 5 4-5 4M4 8h4M4 16h4" /></symbol>
       <symbol id="icon-custom" viewBox="0 0 24 24"><path d="M4 17 17 4l3 3L7 20H4v-3Z" /><path d="m13 6 5 5" /></symbol>
-      <symbol id="icon-catalizador" viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="8" rx="2" /><path d="M2 12h3m14 0h3M9 8v8m6-8v8" /></symbol>
-      <symbol id="icon-downpipe" viewBox="0 0 24 24"><path d="M5 5c7 0 1 14 14 14M5 19h5m4-14h5" /></symbol>
       <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6" /></symbol>
       <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" /></symbol>
       <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h13m-5-5 5 5-5 5" /></symbol>
-      <symbol id="icon-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3.6 17.2a1.4 1.4 0 0 0 2 2l5.7-5.7a4 4 0 0 0 5.2-5.4l-2.4 2.4-2.1-.6-.6-2.1 2.3-2.4Z" /></symbol>
-      <symbol id="icon-flame" viewBox="0 0 24 24"><path d="M12 3c.5 3.5 5 5.5 5 10a5 5 0 0 1-10 0c0-2.2 1.2-3.5 2.3-4.6.3 1.6 1 2.6 2.2 3.1C11 9 11 6 12 3Z" /></symbol>
-      <symbol id="icon-gauge" viewBox="0 0 24 24"><path d="M4.5 17a8.5 8.5 0 1 1 15 0" /><path d="m12 13 4-4" /><circle cx="12" cy="13" r="1.3" /></symbol>
-      <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6l-7-3Z" /><path d="m9 12 2 2 4-4" /></symbol>
-      <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5Z" /><path d="M8 10h8M8 13h5" /></symbol>
       <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z" /><circle cx="12" cy="9" r="2.5" /></symbol>
       <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></symbol>
       <symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".6" fill="currentColor" /></symbol>
