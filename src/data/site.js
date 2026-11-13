@@ -11,9 +11,21 @@ export const DISPLAY_PHONE = '+54 9 381 545-2531';
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 export const PHONE_URL = `tel:+${WHATSAPP_NUMBER}`;
 
-export const ADDRESS = 'Santiago y América';
+// Escrita igual que en la ficha de Google Maps: si el sitio y la ficha dicen lo mismo,
+// Google confía más en que son el mismo negocio
+export const ADDRESS = 'Santiago del Estero 3593';
+export const POSTAL_CODE = 'T4000DXS';
 export const CITY = 'San Miguel de Tucumán';
 export const MAPS_URL = 'https://www.google.com/maps?q=escape1+San+Miguel+de+Tucum%C3%A1n';
+
+// Link fijo de la ficha del taller en Google Maps (Perfil de Empresa "Taller de escape
+// escape1"). Con este link Google relaciona el sitio con la ficha, que es lo que más
+// pesa para aparecer en el mapa de "taller de escapes en Tucumán". El número (cid) es
+// el identificador de la ficha y no cambia aunque se edite el nombre.
+export const GOOGLE_PROFILE_URL = 'https://maps.google.com/?cid=816588305794621978';
+
+// Ubicación exacta del pin del taller, sacada de la ficha de Google Maps
+export const GEO = { lat: -26.8145475, lng: -65.2492695 };
 
 // `schemaDays`: los mismos días en inglés, como los pide Google (schema.org)
 export const HOURS = {

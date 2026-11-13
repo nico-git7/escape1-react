@@ -115,10 +115,10 @@ section { position: relative; padding: clamp(4.5rem, 9vw, 7rem) 0; }
 .about-list li:hover { border-left-color: var(--accent); }
 .about-list h3 { margin: 0; color: var(--text); font-family: var(--display); font-size: clamp(1.5rem,2.2vw,1.9rem); font-weight: 700; letter-spacing: .02em; line-height: 1; text-transform: uppercase; }
 .about-list p { max-width: 46ch; margin: .55rem 0 0; color: var(--soft); font-size: 1rem; }
-.cat-item h3, .contact-card h3, .location-card h3 { margin: 0; color: var(--text); font-family: var(--display); font-size: 1.4rem; font-weight: 700; letter-spacing: .02em; line-height: 1; text-transform: uppercase; }
+.contact-card h3, .location-card h3 { margin: 0; color: var(--text); font-family: var(--display); font-size: 1.4rem; font-weight: 700; letter-spacing: .02em; line-height: 1; text-transform: uppercase; }
 
 /* ---------- Servicios ---------- */
-.cat-item, .form-panel, .info-list, .contact-card, .location-card { border: 1px solid var(--line); border-radius: var(--radius); background: rgba(20,21,22,.92); }
+.form-panel, .info-list, .contact-card, .location-card { border: 1px solid var(--line); border-radius: var(--radius); background: rgba(20,21,22,.92); }
 /* Foto de la tarjeta: ocupa todo el ancho (anula el padding de la tarjeta) */
 /* ---------- Servicios: mosaico con el texto sobre la foto ---------- */
 .services-mosaic { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1rem; }
@@ -236,7 +236,6 @@ section { position: relative; padding: clamp(4.5rem, 9vw, 7rem) 0; }
 .field input::placeholder, .field textarea::placeholder { color: #787d83; }
 .field input:hover, .field select:hover, .field textarea:hover { border-color: #6e7379; }
 .field select { appearance: none; padding-right: 2.5rem; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff4b4b' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-position: right .85rem center; background-repeat: no-repeat; background-size: 16px; }
-.field input[type="date"]::-webkit-calendar-picker-indicator, .field input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(.7) sepia(1) saturate(5) hue-rotate(-20deg); cursor: pointer; }
 .field textarea { min-height: 120px; resize: vertical; }
 .field select option { background: #0d0d0e; color: var(--text); }
 .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); background: rgba(6,6,7,.9); box-shadow: 0 0 0 4px var(--accent-soft); }

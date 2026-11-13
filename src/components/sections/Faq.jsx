@@ -8,7 +8,7 @@ const Faq = () => (
     <div className="wrap faq-layout">
       <div className="faq-intro" data-reveal>
         <p className="eyebrow">Preguntas frecuentes</p>
-        <h2 className="section-title">Lo que más nos consultan</h2>
+        <h2 className="section-title">Preguntas sobre el taller</h2>
         <div className="rule" />
         <p className="section-sub">¿Tenés otra duda? Escribinos por WhatsApp y te respondemos.</p>
         <a className="btn btn-solid" href={WHATSAPP_URL} target="_blank" rel="noopener">

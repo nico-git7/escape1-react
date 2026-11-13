@@ -15,7 +15,7 @@ const Catalog = () => (
       <img className="ps-bg" src="/img/fondos/catalogo.webp" alt="" loading="lazy" />
       <div className="wrap" data-reveal>
         <p className="eyebrow">Catálogo y accesorios</p>
-        <h2 className="section-title">Lo que necesitás, en un solo lugar</h2>
+        <h2 className="section-title">Escapes y accesorios, en un solo lugar</h2>
         <div className="rule" />
         <p className="section-sub">Además de los escapes, fabricamos y colocamos accesorios para autos, camionetas y motos. Tocá una categoría para ver fotos.</p>
       </div>

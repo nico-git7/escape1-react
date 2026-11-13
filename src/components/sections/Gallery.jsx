@@ -191,8 +191,8 @@ const Gallery = () => {
         <div className="section-photo-header photo-section">
           <img className="ps-bg" src="/img/fondos/galeria.webp" alt="" loading="lazy" />
           <div className="wrap" data-reveal>
-            <p className="eyebrow">Trabajos del taller</p>
-            <h2 className="section-title">Galería</h2>
+            <p className="eyebrow">Galería</p>
+            <h2 className="section-title">Trabajos en escapes</h2>
             <div className="rule" />
             <p className="section-sub">Una muestra de piezas, terminaciones y trabajos realizados.</p>
           </div>
