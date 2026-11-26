@@ -61,7 +61,16 @@ const Header = () => {
     <header className={`site-header${scrolled ? ' is-scrolled' : ''}${open ? ' menu-open' : ''}`}>
       <nav className="nav" aria-label="Navegación principal">
         <a className="logo" href="/#inicio" aria-label="Escape1, inicio" onClick={closeMenu}>
-          <img src="/img/logo-soldador.webp" alt="Escape1 Repro-Chip" width="972" height="654" fetchPriority="high" />
+          {/* Se ve a 110 px de ancho como mucho: la mayoría de los celulares bajan la de 220 px */}
+          <img
+            src="/img/logo-soldador.webp"
+            srcSet="/img/logo-soldador-220.webp 220w, /img/logo-soldador.webp 440w"
+            sizes="110px"
+            alt="Escape1 Repro-Chip"
+            width="972"
+            height="654"
+            fetchPriority="high"
+          />
         </a>
         <div className={`nav-menu${open ? ' open' : ''}`} id="navMenu">
           <ul className="nav-links">

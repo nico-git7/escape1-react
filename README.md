@@ -10,7 +10,7 @@ Sitio web para **Escape1**, un taller de escapes para autos, camionetas y motos 
 
 - **Catálogo con fichas de producto:** cada categoría tiene su propia página (`/catalogo/<producto>`) con visor de fotos, miniaturas y navegación con flechas del teclado.
 - **Posicionamiento en Google (SEO):** cada página se genera como HTML estático en el build, con título, descripción y link canónico propios. Cada servicio tiene su página con texto propio y preguntas frecuentes, y la home tiene una sección de preguntas frecuentes. Incluye datos estructurados (schema.org `AutoRepair`, `Service`, `FAQPage` y `BreadcrumbList`), `sitemap.xml` con imágenes, `robots.txt`, página 404 propia e imágenes para que el link se vea bien al compartirlo por WhatsApp o redes.
-- **Rendimiento:** fuentes servidas desde el propio sitio (con preload de las que se ven primero), fotos en `.webp`, miniaturas para las grillas, imagen de portada más liviana en celulares y caché del navegador configurada en `.htaccess`.
+- **Rendimiento:** fuentes servidas desde el propio sitio (con preload de las que se ven primero), fotos en `.webp` de hasta 1280 px, miniaturas para las grillas, miniaturas y versión para celular de las fotos de cada ficha (se generan solas en el build), portada, fondos y logo más livianos en celulares, y compresión y caché del navegador configuradas en `.htaccess`.
 - **Presupuestos y turnos por WhatsApp:** los formularios validan los datos y arman un mensaje prolijo que se abre directo en WhatsApp, el canal principal del taller con sus clientes. Desde un servicio o un producto, el formulario se precarga solo.
 - **Galería de trabajos:** fotos y videos por categoría (autos, camionetas y motos). Los videos se reproducen solos solo mientras están en pantalla, para ahorrar datos y batería, y se abren en un visor navegable.
 - **Diseño responsive:** pensado primero para el celular, desde 360 px hasta pantallas grandes.
@@ -58,9 +58,10 @@ Abrí `http://localhost:5173`.
 
 ```
 public/
-└── .htaccess                # Hostinger: URLs limpias, redirecciones, página 404 y caché
+└── .htaccess                # Hostinger: URLs limpias, redirecciones, página 404, compresión y caché
 scripts/
-└── prerender.js             # Después del build: HTML de cada página, 404, sitemap y robots
+├── prerender.js             # Después del build: HTML de cada página, 404, sitemap y robots
+└── miniaturas.js            # Después del build: miniaturas y versión para celular de las fotos del catálogo (con sharp)
 src/
 ├── App.jsx                  # Layout general y router (home / ficha de producto)
 ├── main.jsx                 # Arranque en el navegador (hidrata el HTML generado)
@@ -72,6 +73,7 @@ src/
 │   ├── Lightbox.jsx         # Visor de fotos y videos de la galería
 │   ├── IconSprite.jsx       # Íconos SVG reutilizables
 │   ├── FaqList.jsx          # Preguntas frecuentes desplegables (home y fichas)
+│   ├── FondoSeccion.jsx     # Foto de fondo de cada sección (versión liviana en celulares)
 │   ├── MainHome.jsx         # Arma la home con todas las secciones
 │   └── sections/            # Hero, Servicios, Galería, Catálogo, Preguntas, Contacto…
 ├── pages/
@@ -87,6 +89,7 @@ src/
 └── utils/
     ├── useRoute.js          # Router mínimo con URLs reales (History API)
     ├── seo.js               # Título, descripción, datos estructurados, sitemap y robots
+    ├── imagenes.js          # Rutas de las versiones livianas (fondos y fotos para celular, miniaturas)
     ├── useReveal.js         # Animación de aparición al hacer scroll
     └── whatsapp.js          # Armado de links y mensajes de WhatsApp
 ```
@@ -95,9 +98,10 @@ src/
 
 El contenido está separado del código, así que no hace falta tocar componentes:
 
-- **Agregar un producto o servicio, o cambiar sus fotos:** editar `src/data/catalog.js`. La página nueva, su título para Google y su entrada en el sitemap se generan solas en el build. Para que posicione, conviene completar `content` (2 o 3 párrafos propios), `includes` y `faqs` con las palabras que usa la gente para buscar ("caño de escape", "silenciador", "tacho"…). Opcionales: `thumb` (miniatura cuadrada de 480 px en `public/img/miniaturas/`) y `shareImage` (imagen de 1200 × 630 en `public/img/compartir/` para cuando se comparte el link).
+- **Agregar un producto o servicio, o cambiar sus fotos:** editar `src/data/catalog.js`. La página nueva, su título para Google y su entrada en el sitemap se generan solas en el build. Para que posicione, conviene completar `content` (2 o 3 párrafos propios), `includes` y `faqs` con las palabras que usa la gente para buscar ("caño de escape", "silenciador", "tacho"…). Opcionales: `thumb` (miniatura cuadrada de 480 px en `public/img/miniaturas/`) y `shareImage` (imagen de 1200 × 630 en `public/img/compartir/` para cuando se comparte el link). Las miniaturas de la tira de fotos de cada ficha y la versión para celular de cada foto no hay que hacerlas: las genera `scripts/miniaturas.js` en el build (en `dist/img/generadas/`).
 - **Cambiar las preguntas frecuentes de la home:** `src/data/faq.js`.
-- **Sumar fotos o videos a la galería:** subir el archivo a `public/img/galeria/` o `public/video/galeria/` y agregarlo en `src/data/gallery.js`. Conviene subir las fotos en `.webp` y de no más de 1600 px de lado: las fotos del celular pesan varios MB y hacen lenta la página.
+- **Sumar fotos o videos a la galería:** subir el archivo a `public/img/galeria/` o `public/video/galeria/` y agregarlo en `src/data/gallery.js`. Conviene subir las fotos en `.webp` y de no más de 1280 px de lado: las fotos del celular pesan varios MB y hacen lenta la página. Antes de subirlas, borrales los metadatos (ubicación GPS, modelo del celular): por ejemplo con `exiftool -all= foto.webp`.
+- **Cambiar o sumar un fondo de sección:** subir a `public/img/fondos/` la foto (1920 × 1080, `.webp`) y también su versión para celular con el mismo nombre terminado en `-celu.webp`: el centro de la foto recortado en vertical, de 810 × 1080.
 - **Cambiar el teléfono, la dirección, el horario o las redes:** `src/data/site.js` (también actualiza los datos que lee Google).
 - **Publicar cambios:** Hostinger publica solo lo que hay en la rama `deploy` (implementación automática desde GitHub). Hay que generar el build y poner el contenido de `dist/` en esa rama:
 

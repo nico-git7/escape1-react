@@ -2,6 +2,7 @@ import Icon from '../Icon';
 import SERVICES from '../../data/services';
 import { rememberHomeScroll } from '../../utils/scrollMemory';
 import { catalogPath } from '../../utils/useRoute';
+import FondoSeccion from '../FondoSeccion';
 
 // `when` marca el orden de cada paso; `image` es una foto de /public/img/proceso
 // `alt`: qué muestra la foto (lo leen Google Imágenes y los lectores de pantalla)
@@ -15,7 +16,7 @@ const PROCESS_STEPS = [
 const ServicesProcess = ({ onSelectService }) => (
   <>
     <section className="photo-section is-subtle" id="servicios">
-      <img className="ps-bg" src="/img/fondos/inicio.webp" alt="" loading="lazy" />
+      <FondoSeccion src="/img/fondos/inicio.webp" />
       <div className="wrap">
         <div className="section-head" data-reveal>
           <div>
@@ -29,7 +30,7 @@ const ServicesProcess = ({ onSelectService }) => (
         <div className="services-mosaic">
           {SERVICES.map((service, index) => (
             <article className={`service-tile${index < 2 ? ' is-large' : ''}`} key={service.title} data-reveal={(index % 4) + 1}>
-              <img src={`/img/stock/${service.image}.jpg`} alt="" loading="lazy" />
+              <img src={`/img/stock/${service.image}.webp`} alt="" loading="lazy" />
               <div className="service-tile-body">
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>

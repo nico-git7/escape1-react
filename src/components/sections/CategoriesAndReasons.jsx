@@ -1,6 +1,7 @@
 import Icon from '../Icon';
 import { rememberHomeScroll } from '../../utils/scrollMemory';
 import { catalogPath } from '../../utils/useRoute';
+import FondoSeccion from '../FondoSeccion';
 
 const MARQUEE_WORDS = [
   'Escapes originales',
@@ -18,7 +19,7 @@ const CATEGORY_TILES = [
   { href: catalogPath('escapes-originales'), image: '/img/categorias/originales.webp', alt: 'Silenciador original junto a un Peugeot 206', label: 'Escapes originales' },
   { href: catalogPath('escapes-deportivos'), image: '/img/categorias/deportiva.webp', alt: 'Silenciador deportivo SilenPro de acero colocado en un auto', label: 'Línea deportiva', position: 'right center' },
   { href: '#catalogo', image: '/img/categorias/camionetas.webp', alt: 'Toyota Hilux en el taller', label: 'Autos y camionetas' },
-  { href: catalogPath('catalizadores'), image: '/img/stock/cat-catalizadores.jpg', alt: 'Catalizadores de escape', label: 'Catalizadores' },
+  { href: catalogPath('catalizadores'), image: '/img/categorias/catalizadores.webp', alt: 'Catalizadores de escape', label: 'Catalizadores' },
   { href: catalogPath('enganches'), image: '/img/categorias/accesorios.webp', alt: 'Enganches colgados en la pared del taller', label: 'Accesorios' },
 ];
 
@@ -71,7 +72,7 @@ const CategoriesAndReasons = () => (
     </section>
 
     <section className="photo-section is-subtle" id="nosotros">
-      <img className="ps-bg" src="/img/fondos/nosotros.webp" alt="" loading="lazy" />
+      <FondoSeccion src="/img/fondos/nosotros.webp" />
       <div className="wrap about">
         <figure className="about-photo" data-reveal>
           <img
