@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Icon from '../Icon';
 import galleryItems, { galleryCategories } from '../../data/gallery';
 import Lightbox from '../Lightbox';
+import FondoSeccion from '../FondoSeccion';
 
 const isVideo = (item) => Boolean(item.video || item.youtube);
 
@@ -189,7 +190,7 @@ const Gallery = () => {
     <>
       <section id="galeria">
         <div className="section-photo-header photo-section">
-          <img className="ps-bg" src="/img/fondos/galeria.webp" alt="" loading="lazy" />
+          <FondoSeccion src="/img/fondos/galeria.webp" />
           <div className="wrap" data-reveal>
             <p className="eyebrow">Galería</p>
             <h2 className="section-title">Trabajos en escapes</h2>

@@ -1,5 +1,6 @@
 import Icon from '../Icon';
 import { ADDRESS, CITY, DISPLAY_PHONE, GOOGLE_PROFILE_URL, HOURS, MAPS_URL, PHONE_URL, SOCIALS, WHATSAPP_URL } from '../../data/site';
+import FondoSeccion from '../FondoSeccion';
 
 const CONTACT_CARDS = [
   { icon: 'whatsapp', title: 'WhatsApp', value: DISPLAY_PHONE, href: WHATSAPP_URL, external: true, featured: true },
@@ -10,7 +11,7 @@ const CONTACT_CARDS = [
 const LocationContact = () => (
   <>
     <section className="photo-section" id="ubicacion">
-      <img className="ps-bg" src="/img/fondos/ubicacion.webp" alt="" loading="lazy" />
+      <FondoSeccion src="/img/fondos/ubicacion.webp" />
       <div className="wrap">
         <div data-reveal>
           <p className="eyebrow">Dónde encontrarnos</p>
@@ -46,7 +47,7 @@ const LocationContact = () => (
     </section>
 
     <section className="contact-band photo-section is-subtle" id="contacto">
-      <img className="ps-bg" src="/img/fondos/contacto.webp" alt="" loading="lazy" />
+      <FondoSeccion src="/img/fondos/contacto.webp" />
       <div className="wrap">
         <div className="contact-head" data-reveal>
           <p className="eyebrow">Hablemos</p>

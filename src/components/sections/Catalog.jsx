@@ -3,6 +3,7 @@ import catalogItems from '../../data/catalog';
 import { rememberHomeScroll } from '../../utils/scrollMemory';
 import { catalogPath } from '../../utils/useRoute';
 import { whatsAppLink } from '../../utils/whatsapp';
+import FondoSeccion from '../FondoSeccion';
 
 const ASK_URL = whatsAppLink(['Hola, quiero consultar por un producto que no está en el catálogo de la web.']);
 
@@ -12,7 +13,7 @@ const [featured, ...rest] = catalogItems.filter((item) => item.showInCatalog !==
 const Catalog = () => (
   <section className="bg-soft" id="catalogo">
     <div className="section-photo-header photo-section">
-      <img className="ps-bg" src="/img/fondos/catalogo.webp" alt="" loading="lazy" />
+      <FondoSeccion src="/img/fondos/catalogo.webp" />
       <div className="wrap" data-reveal>
         <p className="eyebrow">Catálogo y accesorios</p>
         <h2 className="section-title">Escapes y accesorios, en un solo lugar</h2>

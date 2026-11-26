@@ -12,7 +12,7 @@ const video = (category, name, extra = {}) => ({
   category,
   video: `/video/galeria/${name}.mp4`,
   preview: `/video/galeria/previews/${name}.mp4`,
-  poster: `/video/galeria/posters/${name}.jpg`,
+  poster: `/video/galeria/posters/${name}.webp`,
   ...extra,
 });
 

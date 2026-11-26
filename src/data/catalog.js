@@ -92,7 +92,7 @@ const catalogItems = [
       `${F}deportivos-escapes-a-la-venta.webp`,
       `${F}deportivos-silenciadores-escape1.webp`,
       `${F}deportivos-silenciadores-en-mesa.webp`,
-      `${P}deportivo1.jpeg`,
+      `${P}deportivo1.webp`,
       `${P}dep1.webp`,
     ],
     content: [
@@ -124,7 +124,7 @@ const catalogItems = [
   {
     slug: 'downpipe-y-reprogramacion',
     title: 'Downpipe y reprogramación',
-    image: `${S}catalogo-downpipe.jpg`,
+    image: `${S}catalogo-downpipe.webp`,
     thumb: `${M}downpipe-y-reprogramacion.webp`,
     alt: 'Escape deportivo con llamarada',
     shareImage: `${C}downpipe-y-reprogramacion.jpg`,
@@ -132,11 +132,11 @@ const catalogItems = [
     description:
       'Downpipe a medida, catalizadores y reprogramación (DPF - EGR OFF). Contanos el modelo de tu vehículo y te asesoramos.',
     photos: [
-      `${P}dowpipe.jpg`,
+      `${P}dowpipe.webp`,
       `${P}flex1.jpeg`,
-      `${P}flex2.jpeg`,
-      `${P}flex3.jpeg`,
-      `${P}flex4.jpeg`,
+      `${P}flex2.webp`,
+      `${P}flex3.webp`,
+      `${P}flex4.webp`,
     ],
     content: [
       'El downpipe es el caño que sale directo del turbo. Lo fabricamos a medida en acero inoxidable para vehículos turbo. También trabajamos con flexibles, bajadas y catalizadores.',
@@ -176,7 +176,7 @@ const catalogItems = [
       `${F}acero-equipos-completos.webp`,
       `${F}acero-escapes-inoxidable.webp`,
       `${P}inoxidable1.webp`,
-      `${P}inox4.jpeg`,
+      `${P}inox4.webp`,
     ],
     content: [
       'Fabricamos escapes y piezas a medida en acero inoxidable: equipos completos, codos, curvas, cañerías y adaptaciones para proyectos especiales o vehículos modificados.',
@@ -203,7 +203,7 @@ const catalogItems = [
     slug: 'motos',
     seoTitle: 'Escapes para motos',
     title: 'Motos',
-    image: `${S}catalogo-motos.jpg`,
+    image: `${S}catalogo-motos.webp`,
     thumb: `${M}motos.webp`,
     alt: 'Escape deportivo de moto',
     shareImage: `${C}motos.jpg`,
@@ -282,7 +282,7 @@ const catalogItems = [
   {
     slug: 'juntas-abrazaderas-y-soportes',
     title: 'Juntas, abrazaderas y soportes',
-    image: `${P}juntas.jpg`,
+    image: `${P}juntas.webp`,
     thumb: `${M}juntas-abrazaderas-y-soportes.webp`,
     alt: 'Juntas y bulones para escape',
     shareImage: `${C}juntas-abrazaderas-y-soportes.jpg`,
@@ -290,10 +290,10 @@ const catalogItems = [
     description:
       'Juntas, abrazaderas y soportes en distintas medidas para dejar tu escape firme y sin pérdidas.',
     photos: [
-      `${P}juntas.jpg`,
-      `${P}accesorios.jpg`,
-      `${P}soporte-goma.jpg`,
-      `${P}abrazaderas-juntas.jpg`,
+      `${P}juntas.webp`,
+      `${P}accesorios.webp`,
+      `${P}soporte-goma.webp`,
+      `${P}abrazaderas-juntas.webp`,
       `${P}abrazaderas1.webp`,
     ],
     content: [
@@ -318,7 +318,7 @@ const catalogItems = [
     title: 'Catalizadores',
     eyebrow: 'Servicio',
     showInCatalog: false,
-    image: `${S}servicio-catalizadores.jpg`,
+    image: `${S}servicio-catalizadores.webp`,
     thumb: `${M}catalizadores.webp`,
     alt: 'Catalizadores de escape',
     shareImage: `${C}catalizadores.jpg`,
@@ -326,9 +326,9 @@ const catalogItems = [
     description:
       'Diagnóstico, reemplazo y reparación de catalizadores según el estado del sistema de escape, para autos y camionetas.',
     photos: [
-      `${S}servicio-catalizadores.jpg`,
-      `${P}flex3.jpeg`,
-      `${S}cat-catalizadores.jpg`,
+      `${S}servicio-catalizadores.webp`,
+      `${P}flex3.webp`,
+      `${S}cat-catalizadores.webp`,
     ],
     content: [
       'El catalizador es la parte del escape que reduce los gases contaminantes. Con el tiempo se puede tapar o romper por dentro, y eso afecta el funcionamiento del motor.',
@@ -366,8 +366,8 @@ const catalogItems = [
     photos: [
       `${T}paso-2-revision.webp`,
       `${T}paso-2-camioneta.webp`,
-      `${P}abrazaderas-juntas.jpg`,
-      `${S}servicio-reparaciones.jpg`,
+      `${P}abrazaderas-juntas.webp`,
+      `${S}servicio-reparaciones.webp`,
     ],
     content: [
       'Si el escape hace más ruido de lo normal, vibra, golpea o tiene una pérdida, lo revisamos y lo reparamos. Cuando se puede, cambiamos solo el tramo dañado; si no, el silenciador, las juntas o los soportes que hagan falta.',

@@ -1,6 +1,6 @@
 // Servicios del taller (sección "Servicios" de la home y datos para Google).
 //
-// `image`: foto de /public/img/stock (sin la extensión .jpg).
+// `image`: foto de /public/img/stock (sin la extensión .webp).
 // `service`: opción que se precarga en el formulario de presupuesto
 // (tiene que coincidir con una de SERVICE_OPTIONS de BudgetForm.jsx).
 // `page`: slug de la página del catálogo con el detalle del servicio (data/catalog.js).

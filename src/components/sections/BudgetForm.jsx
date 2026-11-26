@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import Icon from '../Icon';
 import PaymentLogos from '../PaymentLogos';
 import { openWhatsApp } from '../../utils/whatsapp';
+import FondoSeccion from '../FondoSeccion';
 
 const SERVICE_OPTIONS = [
   'Cambio de escape original',
@@ -55,7 +56,7 @@ const BudgetForm = ({ preset }) => {
 
   return (
     <section className="photo-section" id="presupuesto">
-      <img className="ps-bg" src="/img/fondos/presupuesto.webp" alt="" loading="lazy" />
+      <FondoSeccion src="/img/fondos/presupuesto.webp" />
       <div className="wrap two-col">
         <div data-reveal>
           <p className="eyebrow">Cotización</p>

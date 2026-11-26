@@ -4,6 +4,7 @@ import FaqList from '../components/FaqList';
 import catalogItems from '../data/catalog';
 import { ADDRESS, CITY } from '../data/site';
 import { openedFromHome } from '../utils/scrollMemory';
+import { fotoCelular, miniatura } from '../utils/imagenes';
 import { catalogPath } from '../utils/useRoute';
 import { whatsAppLink } from '../utils/whatsapp';
 import './CatalogDetail.css';
@@ -73,12 +74,15 @@ const CatalogDetail = ({ slug }) => {
         <div className="detail-layout">
           <div data-reveal>
             <div className="viewer">
-              <img
-                key={item.photos[current] + current}
-                src={item.photos[current]}
-                alt={`${name} en Escape1, foto ${current + 1} de ${total}`}
-                fetchPriority={current === 0 ? 'high' : undefined}
-              />
+              {/* En celulares se baja la versión de 900 px (ver utils/imagenes.js) */}
+              <picture key={item.photos[current] + current}>
+                <source media="(max-width: 700px)" srcSet={fotoCelular(item.photos[current])} />
+                <img
+                  src={item.photos[current]}
+                  alt={`${name} en Escape1, foto ${current + 1} de ${total}`}
+                  fetchPriority={current === 0 ? 'high' : undefined}
+                />
+              </picture>
               {total > 1 && (
                 <>
                   <button className="viewer-btn prev" type="button" aria-label="Foto anterior" onClick={() => go(-1)}><Icon name="chevron-left" /></button>
@@ -97,8 +101,9 @@ const CatalogDetail = ({ slug }) => {
                   aria-current={index === current}
                   onClick={() => setCurrent(index)}
                 >
-                  {/* Prioridad baja: primero tiene que cargar la foto grande */}
-                  <img src={photo} alt="" loading="lazy" decoding="async" fetchPriority="low" />
+                  {/* Miniatura liviana (no la foto entera) y con prioridad baja: primero
+                      tiene que cargar la foto grande */}
+                  <img src={miniatura(photo)} alt="" loading="lazy" decoding="async" fetchPriority="low" />
                 </button>
               ))}
             </div>
